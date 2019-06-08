@@ -1,5 +1,6 @@
 package com.amin.homitel.ui.posts
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.amin.homitel.base.BaseViewModel
@@ -31,7 +32,6 @@ class PostsViewModel: BaseViewModel(){
             .doOnSubscribe { onRetrievePostListStart() }
             .doOnTerminate { onRetrievePostListFinish() }
             .subscribe(
-                // Add result
                 { result -> onRetrievePostListSuccess(result) },
                 { onRetrievePostListError() }
             )
@@ -51,7 +51,7 @@ class PostsViewModel: BaseViewModel(){
     }
 
     private fun onRetrievePostListError(){
-
+        Log.e("errorrrrrr", "errorrrrr")
     }
 
     override fun onCleared() {

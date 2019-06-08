@@ -6,9 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 @Module
 // Safe here as we are dealing with a Dagger 2 module
@@ -36,8 +39,26 @@ object NetworkModule {
     internal fun provideRetrofitInterface(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(createHttpClient().build())
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
+    }
+
+    @Provides
+    @Reusable
+    @JvmStatic
+    fun createHttpClient(): OkHttpClient.Builder {
+        val okHttpClientBuilder = OkHttpClient.Builder()
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
+        okHttpClientBuilder.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+            chain.proceed(request.build())
+        }
+        return okHttpClientBuilder
     }
 }

@@ -32,4 +32,5 @@ ext {
     navigationVersion = '1.0.0-alpha09'
     retrofit_version = '2.4.0'
     dagger2_version = '2.16'
+    okhttpVersion = "3.10.0"
 }
