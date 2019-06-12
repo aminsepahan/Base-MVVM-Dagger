@@ -4,8 +4,8 @@
 
     <data>
         <variable
-                name="viewModel"
-                type="com.amin.homitel.ui.posts.PostViewModel" />
+                name="post"
+                type="com.amin.homitel.model.Post" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                app:mutableText="@{viewModel.getPostTitle()}"
+                android:text="@{post.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:mutableText="@{viewModel.getPostBody()}"
+                android:text="@{post.body}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_title" />

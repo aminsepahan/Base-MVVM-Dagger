@@ -25,17 +25,18 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
         return if (::postList.isInitialized) postList.size else 0
     }
 
-    fun updatePostList(postList: List<Post>) {
-        this.postList = postList
-        notifyDataSetChanged()
+    fun updatePostList(postList: List<Post>?) {
+        postList?.let {
+            this.postList = postList
+            notifyDataSetChanged()
+        }
     }
 
     class ViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val viewModel = PostViewModel()
 
-        fun bind(post:Post){
-            viewModel.bind(post)
-            binding.viewModel = viewModel
+        fun bind(post: Post) {
+            binding.post = post
+            binding.executePendingBindings()
         }
     }
 }

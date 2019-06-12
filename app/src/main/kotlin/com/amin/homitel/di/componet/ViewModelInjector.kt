@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Component(modules = [(NetworkModule::class)])
 interface ViewModelInjector {
     /**
-     * Injects required dependencies into the specified PostListViewModel.
+     * Injects required dependencies into the specified PostViewModel.
      * @param postListViewModel PostListViewModel in which to inject the dependencies
      */
     fun inject(postListViewModel: PostsViewModel)

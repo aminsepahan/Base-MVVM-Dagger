@@ -5,6 +5,9 @@
         <variable
                 name="viewModel"
                 type="com.amin.homitel.ui.posts.PostsViewModel"/>
+        <variable
+                name="postListAdapter"
+                type="com.amin.homitel.ui.posts.PostListAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,7 +25,7 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
-                app:adapter="@{viewModel.getPostListAdapter()}"
+                app:adapter="@{postListAdapter}"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
