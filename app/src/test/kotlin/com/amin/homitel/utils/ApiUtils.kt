@@ -10,6 +10,7 @@ lateinit var POST_MOCK_PATH: String
 
 class ApiUtils {
     companion object {
+        @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         inline fun <reified T : Any> getUrl(jsonPath: String): T {
             val buf = StringBuilder()
 

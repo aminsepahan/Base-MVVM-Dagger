@@ -33,10 +33,11 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
     }
 
     class ViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val viewModel = PostViewModel()
 
         fun bind(post: Post) {
-            binding.post = post
-            binding.executePendingBindings()
+            viewModel.bind(post)
+            binding.viewModel = viewModel
         }
     }
 }

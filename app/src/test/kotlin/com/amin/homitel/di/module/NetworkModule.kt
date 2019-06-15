@@ -17,7 +17,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    internal fun providePostApi(retrofit: Retrofit): PostApi {
+    internal fun providePostApi(@Suppress("UNUSED_PARAMETER") retrofit: Retrofit): PostApi {
         return object : PostApi {
             override fun getPosts(): Maybe<List<Post>> {
                 return Maybe.fromCallable { ApiUtils.getUrl<List<Post>>(POST_MOCK_PATH) }

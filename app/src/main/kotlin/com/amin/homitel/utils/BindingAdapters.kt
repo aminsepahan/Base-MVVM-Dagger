@@ -18,6 +18,13 @@ fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
     }
 }
 
+@BindingAdapter("mutableText")
+fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
+    val parentActivity:AppCompatActivity? = view.getParentActivity()
+    if(parentActivity != null && text != null) {
+        text.observe(parentActivity, Observer { value -> view.text = value?:""})
+    }
+}
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
