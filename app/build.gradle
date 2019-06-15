@@ -76,4 +76,7 @@ dependencies {
     // Mockito
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
     testImplementation 'org.mockito:mockito-inline:2.21.0'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

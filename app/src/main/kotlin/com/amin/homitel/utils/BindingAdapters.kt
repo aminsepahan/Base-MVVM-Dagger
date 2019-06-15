@@ -1,6 +1,7 @@
 package com.amin.homitel.utils
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amin.homitel.utils.extensions.getParentActivity
+import com.squareup.picasso.Picasso
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
@@ -31,4 +33,9 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.setHasFixedSize(true)
     view.layoutManager = LinearLayoutManager(view.context)
     view.adapter = adapter
+}
+
+@BindingAdapter("imageUrl")
+fun downloadWithPicasso(view: ImageView, imageUrl: String) {
+    Picasso.get().load(imageUrl).into(view)
 }
