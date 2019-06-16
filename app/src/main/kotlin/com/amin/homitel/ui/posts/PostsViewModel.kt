@@ -24,9 +24,6 @@ class PostsViewModel: BaseViewModel(){
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val postLiveData: MutableLiveData<LiveDataResult<List<Post>>> = MutableLiveData()
 
-
-    private lateinit var subscription: Disposable
-
     fun loadPosts(){
         postApi.getPosts()
             .subscribeOn(ioThread())
@@ -58,6 +55,5 @@ class PostsViewModel: BaseViewModel(){
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
     }
 }

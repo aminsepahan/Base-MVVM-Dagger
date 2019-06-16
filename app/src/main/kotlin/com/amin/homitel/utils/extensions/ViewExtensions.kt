@@ -14,3 +14,8 @@ fun View.getParentActivity(): AppCompatActivity?{
     }
     return null
 }
+
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}

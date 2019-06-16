@@ -23,7 +23,6 @@ android {
         }
     }
 
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs = ['src/test/kotlin']
@@ -35,6 +34,9 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
@@ -46,8 +48,18 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
+    debugImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
+    implementation 'androidx.fragment:fragment:1.1.0-beta01'
+    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-beta01'
+
+    // Robolectric
+    testImplementation 'org.robolectric:robolectric:4.3'
 
     // retrofit and rxjava
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -76,6 +88,7 @@ dependencies {
     // Mockito
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
     testImplementation 'org.mockito:mockito-inline:2.21.0'
+    testImplementation 'org.mockito:mockito-core:2.23.0'
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'

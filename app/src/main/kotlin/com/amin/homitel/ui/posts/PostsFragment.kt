@@ -13,6 +13,8 @@ import com.amin.homitel.R
 import com.amin.homitel.databinding.FragmentPostsBinding
 import com.amin.homitel.model.Post
 import com.amin.homitel.utils.LiveDataResult
+import com.amin.homitel.utils.extensions.visible
+import kotlinx.android.synthetic.main.fragment_posts.*
 
 
 class PostsFragment : Fragment() {
@@ -44,6 +46,7 @@ class PostsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadPosts()
     }
+
     private val dataObserver = Observer<LiveDataResult<List<Post>>> { result ->
         when (result?.status) {
             LiveDataResult.Status.LOADING -> {
@@ -55,9 +58,12 @@ class PostsFragment : Fragment() {
             }
 
             LiveDataResult.Status.SUCCESS -> {
+                rv.visible()
+                test.text = "test 2"
                 postListAdapter.updatePostList(result.data!!)
             }
         }
     }
 
 }
+
