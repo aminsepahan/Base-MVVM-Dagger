@@ -4,4 +4,8 @@
 .DS_Store
 /build
 /captures
+/.idea
+/gradle
 .externalNativeBuild
+/gradlew
+/gradlew.bat
