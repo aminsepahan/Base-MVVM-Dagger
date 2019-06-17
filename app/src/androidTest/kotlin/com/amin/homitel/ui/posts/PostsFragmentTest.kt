@@ -30,10 +30,7 @@ class PostsFragmentTest {
     fun shouldShowListTestWithSleep() {
         launchFragmentInContainer<PostsFragment>()
         Thread.sleep(7000)
-        onView(
-            RecyclerViewMatcher(R.id.rv)
-                .atPositionOnView(0, R.id.postTitle)
-        )
+        onView(RecyclerViewMatcher(R.id.rv).atPositionOnView(0, R.id.postTitle))
             .check(matches(withText("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")))
     }
 

@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.amin.homitel.di.componet.DaggerViewModelInjector
 import com.amin.homitel.di.componet.ViewModelInjector
 import com.amin.homitel.di.module.NetworkModule
+import com.amin.homitel.network.PostApi
 import com.amin.homitel.ui.posts.PostsViewModel
+import javax.inject.Inject
 
-abstract class BaseViewModel: ViewModel(){
+abstract class BaseViewModel : ViewModel() {
     private val injector: ViewModelInjector = DaggerViewModelInjector
         .builder()
         .networkModule(NetworkModule)
@@ -16,6 +18,9 @@ abstract class BaseViewModel: ViewModel(){
         inject()
     }
 
+    @Inject
+    lateinit var postApi: PostApi
+
     /**
      * Injects the required dependencies
      */
@@ -24,4 +29,6 @@ abstract class BaseViewModel: ViewModel(){
             is PostsViewModel -> injector.inject(this)
         }
     }
+
+
 }

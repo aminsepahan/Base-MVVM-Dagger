@@ -59,7 +59,6 @@ class PostsFragment : Fragment() {
 
             LiveDataResult.Status.SUCCESS -> {
                 rv.visible()
-                test.text = "test 2"
                 postListAdapter.updatePostList(result.data!!)
             }
         }

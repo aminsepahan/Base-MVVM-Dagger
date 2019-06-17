@@ -18,8 +18,6 @@ import javax.inject.Inject
 
 class PostsViewModel: BaseViewModel(){
 
-    @Inject
-    lateinit var postApi: PostApi
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val postLiveData: MutableLiveData<LiveDataResult<List<Post>>> = MutableLiveData()
@@ -51,9 +49,5 @@ class PostsViewModel: BaseViewModel(){
             loadingVisibility.value = View.GONE
         }
 
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 }
