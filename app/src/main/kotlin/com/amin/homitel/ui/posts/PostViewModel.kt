@@ -15,16 +15,16 @@ class PostViewModel : BaseViewModel() {
         id = post.id.toString()
     }
 
-    fun getPostTitle(): MutableLiveData<String> {
-        return postTitle
+    fun getPostTitle(): String {
+        return postTitle.value!!
     }
 
     fun getPostImage(): String {
         return Constants.IMAGE_RANDOM_URL + id + "/250"
     }
 
-    fun getPostBody(): MutableLiveData<String> {
-        return postBody
+    fun getPostBody(): String {
+        return postBody.value!!
     }
 
 }
