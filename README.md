@@ -10,4 +10,4 @@
 - Dependency injection with Dagger 2
 - Unit tests using jUnit and mock Api
 - Databinding for Fragments and recyclerView
-
+- Espresso for UI and Instrumentation test
