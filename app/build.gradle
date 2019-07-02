@@ -43,9 +43,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.core:core-ktx:$androidXVersion"
+    implementation "com.google.android.material:material:$materialVersion"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
@@ -53,31 +53,31 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
 
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
-    implementation 'androidx.fragment:fragment:1.1.0-beta01'
-    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-beta01'
+    implementation "androidx.fragment:fragment:$fragmentVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
 
     // Robolectric
     testImplementation 'org.robolectric:robolectric:4.3'
 
     // retrofit and rxjava
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
-    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
-    testImplementation "com.google.code.gson:gson:2.8.5"
-    testImplementation("com.squareup.okhttp3:mockwebserver:3.14.2")
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    testImplementation "com.google.code.gson:gson:$gsonVersion"
+    testImplementation("com.squareup.okhttp3:mockwebserver:$mockWebserverVersion")
 
     // Android Archs
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    testImplementation "android.arch.core:core-testing:1.1.1"
+    implementation "android.arch.lifecycle:extensions:$androidArch"
+    testImplementation "android.arch.core:core-testing:$androidArch"
 
     // navigation
     implementation "android.arch.navigation:navigation-fragment:" + rootProject.navigationVersion
@@ -85,9 +85,9 @@ dependencies {
     implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
 
     // dagger
-    implementation "com.google.dagger:dagger:$dagger2_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
-    compileOnly "org.glassfish:javax.annotation:3.1.1"
+    implementation "com.google.dagger:dagger:$dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
+    compileOnly "org.glassfish:javax.annotation:$javaxAnnotation"
 
     // Mockito
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
@@ -95,5 +95,5 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
     //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 }

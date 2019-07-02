@@ -35,11 +35,10 @@ class PostsFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_posts, container, false
         )
-        val view = binding.root
-        //here data must be an instance of the class MarsDataProvider
         binding.viewModel = viewModel
         binding.postListAdapter = postListAdapter
-        return view
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
