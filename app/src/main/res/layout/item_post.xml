@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.amin.homitel.ui.posts.PostViewModel"/>
+                type="com.amin.sample.ui.posts.PostViewModel"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView

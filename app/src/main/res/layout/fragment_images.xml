@@ -4,10 +4,10 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.amin.sample.ui.posts.PostsViewModel"/>
+                type="com.amin.sample.ui.shutterStock.ImagesViewModel"/>
         <variable
-                name="postListAdapter"
-                type="com.amin.sample.ui.posts.PostListAdapter"/>
+                name="listAdapter"
+                type="com.amin.sample.ui.shutterStock.ImagesAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
-                app:adapter="@{postListAdapter}"
+                app:adapter="@{listAdapter}"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

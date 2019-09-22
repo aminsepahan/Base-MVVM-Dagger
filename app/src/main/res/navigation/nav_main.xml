@@ -4,6 +4,6 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_main"
             app:startDestination="@id/postsFragment">
 
-    <fragment android:id="@+id/postsFragment" android:name="com.amin.homitel.ui.posts.PostsFragment"
+    <fragment android:id="@+id/postsFragment" android:name="com.amin.sample.ui.posts.PostsFragment"
               android:label="fragment_posts" tools:layout="@layout/fragment_posts"/>
 </navigation>
