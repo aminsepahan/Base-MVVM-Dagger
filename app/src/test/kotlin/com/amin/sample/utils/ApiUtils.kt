@@ -14,7 +14,7 @@ class ApiUtils {
         inline fun <reified T : Any> getUrl(jsonPath: String): T {
             val buf = StringBuilder()
 
-            val kotlinBuildClassesFolder = ApiUtils::class.java.protectionDomain.codeSource.location.path
+            val kotlinBuildClassesFolder = ApiUtils::class.java.protectionDomain!!.codeSource.location.path
             val assetsPath = kotlinBuildClassesFolder.replace(
                 "/build/tmp/kotlin-classes/debugUnitTest/",
                 "/src/test/assets/api_mocks/" + jsonPath

@@ -11,6 +11,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -30,7 +31,7 @@
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     android:transitionName="imageView"
-                    app:imageUrl="@{model.assets.hugeThumb}"
+                    app:imageUrl="@{model.assets.hugeThumb.url}"
                     app:layout_constraintDimensionRatio="H,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

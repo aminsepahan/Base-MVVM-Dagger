@@ -1,7 +1,7 @@
 package com.amin.sample.ui.posts
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.amin.sample.utils.LiveDataResult
+import com.amin.sample.utils.LDR
 import com.amin.sample.utils.POST_MOCK_PATH
 import com.amin.sample.utils.observeOnce
 import org.junit.Assert.assertEquals
@@ -36,7 +36,7 @@ class PostsViewModelTest {
         this.postsViewModel.loadPosts()
 
         assertNotNull(this.postsViewModel.postLiveData.value)
-        assertEquals(LiveDataResult.Status.SUCCESS, this.postsViewModel.postLiveData.value?.status)
+        assertEquals(LDR.Status.SUCCESS, this.postsViewModel.postLiveData.value?.status)
     }
 
     @Test
@@ -46,7 +46,7 @@ class PostsViewModelTest {
         this.postsViewModel.loadPosts()
 
         assertNotNull(this.postsViewModel.postLiveData.value)
-        assertEquals(LiveDataResult.Status.ERROR, this.postsViewModel.postLiveData.value?.status)
+        assertEquals(LDR.Status.ERROR, this.postsViewModel.postLiveData.value?.status)
     }
 
     @Test
@@ -57,7 +57,7 @@ class PostsViewModelTest {
 
         assertNotNull(this.postsViewModel.postLiveData.value)
         this.postsViewModel.postLiveData.observeOnce { liveDataResult ->
-            if (liveDataResult.status == LiveDataResult.Status.SUCCESS) assertEquals(liveDataResult.data?.size, 100)
+            if (liveDataResult.status == LDR.Status.SUCCESS) assertEquals(liveDataResult.response?.size, 100)
         }
 
     }

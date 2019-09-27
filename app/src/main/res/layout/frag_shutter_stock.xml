@@ -4,10 +4,10 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.amin.sample.ui.shutterStock.ImagesViewModel"/>
+                type="com.amin.sample.ui.shutterStock.ShutterStockViewModel"/>
         <variable
                 name="listAdapter"
-                type="com.amin.sample.ui.shutterStock.ImagesAdapter"/>
+                type="com.amin.sample.ui.shutterStock.ShutterStockAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

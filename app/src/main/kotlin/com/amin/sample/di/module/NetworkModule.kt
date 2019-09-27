@@ -4,6 +4,7 @@ import com.amin.sample.base.Configs
 import com.amin.sample.base.Configs.BASE_URL
 import com.amin.sample.base.Configs.sampleMode
 import com.amin.sample.network.PostApi
+import com.amin.sample.network.ShutterStockApi
 import com.amin.sample.utils.ioThread
 import dagger.Module
 import dagger.Provides
@@ -31,6 +32,12 @@ object NetworkModule {
         return retrofit.create(PostApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    internal fun provideShutterStockApi(retrofit: Retrofit): ShutterStockApi {
+        return retrofit.create(ShutterStockApi::class.java)
+    }
+
     /**
      * Provides the Retrofit object.
      * @return the Retrofit object
@@ -41,7 +48,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(createHttpClient().build())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(ioThread()))
             .build()
     }
@@ -50,11 +57,11 @@ object NetworkModule {
     @Singleton
     fun createHttpClient(): OkHttpClient.Builder {
         val okHttpClientBuilder = OkHttpClient.Builder()
-            .connectTimeout(100, TimeUnit.SECONDS)
-            .readTimeout(100, TimeUnit.SECONDS)
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        })
         okHttpClientBuilder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
             when (sampleMode) {

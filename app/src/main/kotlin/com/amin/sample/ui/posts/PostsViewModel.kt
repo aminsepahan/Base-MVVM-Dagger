@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.amin.sample.base.BaseViewModel
 import com.amin.sample.model.Post
 import com.amin.sample.network.PostApi
-import com.amin.sample.utils.LiveDataResult
+import com.amin.sample.utils.LDR
 import com.amin.sample.utils.androidThread
 import com.amin.sample.utils.ioThread
 import io.reactivex.MaybeObserver
@@ -18,7 +18,7 @@ class PostsViewModel: BaseViewModel(){
     lateinit var postApi: PostApi
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val postLiveData: MutableLiveData<LiveDataResult<List<Post>>> = MutableLiveData()
+    val postLiveData: MutableLiveData<LDR<List<Post>>> = MutableLiveData()
 
 
     private lateinit var subscription: Disposable
@@ -32,17 +32,17 @@ class PostsViewModel: BaseViewModel(){
 
     inner class GetPostsConsumer : MaybeObserver<List<Post>> {
         override fun onSubscribe(d: Disposable) {
-            postLiveData.postValue(LiveDataResult.loading())
+            postLiveData.postValue(LDR.loading())
             loadingVisibility.value = View.VISIBLE
         }
 
         override fun onError(e: Throwable) {
-            postLiveData.postValue(LiveDataResult.error(e))
+            postLiveData.postValue(LDR.error(e))
             loadingVisibility.value = View.GONE
         }
 
         override fun onSuccess(t: List<Post>) {
-            postLiveData.postValue(LiveDataResult.success(t))
+            postLiveData.postValue(LDR.success(t))
             loadingVisibility.value = View.GONE
         }
 
