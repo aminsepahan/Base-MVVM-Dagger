@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.amin.sample.R
 import com.amin.sample.databinding.FragmentPostsBinding
 import com.amin.sample.model.Post
@@ -34,7 +35,9 @@ class PostsFragment : Fragment() {
             inflater, R.layout.fragment_posts, container, false
         )
         val view = binding.root
-        //here data must be an instance of the class MarsDataProvider
+
+        binding.rv.layoutManager = LinearLayoutManager(activity)
+        binding.rv.hasFixedSize()
         binding.viewModel = viewModel
         binding.postListAdapter = postListAdapter
         return view
@@ -44,6 +47,7 @@ class PostsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadPosts()
     }
+
     private val dataObserver = Observer<LDR<List<Post>>> { result ->
         when (result?.status) {
             LDR.Status.LOADING -> {
@@ -57,7 +61,8 @@ class PostsFragment : Fragment() {
             LDR.Status.SUCCESS -> {
                 postListAdapter.updatePostList(result.response!!)
             }
-            else -> {}
+            else -> {
+            }
         }
     }
 

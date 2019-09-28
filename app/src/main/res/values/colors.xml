@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="baseBackDarker">#FFFFFF</color>
+
+    //general
+    <color name="themeYellow">#E0B817</color>
 </resources>

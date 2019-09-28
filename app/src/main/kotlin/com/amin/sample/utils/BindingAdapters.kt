@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.amin.sample.utils.extensions.getParentActivity
+import com.amin.leadme.utils.extensions.getParentActivity
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("mutableVisibility")

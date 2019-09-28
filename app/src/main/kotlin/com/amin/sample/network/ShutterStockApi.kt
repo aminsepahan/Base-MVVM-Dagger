@@ -7,6 +7,6 @@ import io.reactivex.Maybe
 import retrofit2.http.GET
 
 interface ShutterStockApi {
-    @GET("/images/search")
+    @GET("images/search")
     fun searchImages(): Maybe<BaseResponseShutterStock>
 }

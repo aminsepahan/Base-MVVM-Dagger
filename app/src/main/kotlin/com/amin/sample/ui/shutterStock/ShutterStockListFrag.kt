@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.amin.sample.R
 import com.amin.sample.base.BaseResponseShutterStock
 import com.amin.sample.databinding.FragShutterStockBinding
 import com.amin.sample.utils.LDR
+import com.amin.sample.utils.extensions.showDismissDialog
 
 
 class ShutterStockListFrag : Fragment() {
@@ -34,7 +36,8 @@ class ShutterStockListFrag : Fragment() {
             inflater, R.layout.frag_shutter_stock, container, false
         )
         val view = binding.root
-        //here data must be an instance of the class MarsDataProvider
+//        binding.rv.layoutManager = GridLayoutManager(activity, 2)
+//        binding.rv.hasFixedSize()
         binding.viewModel = viewModel
         binding.listAdapter = listAdapter
         return view
@@ -47,11 +50,10 @@ class ShutterStockListFrag : Fragment() {
     private val dataObserver = Observer<LDR<BaseResponseShutterStock>> { result ->
         when (result?.status) {
             LDR.Status.LOADING -> {
-                // Loading data
             }
 
             LDR.Status.ERROR -> {
-
+                showDismissDialog(result.err!!.localizedMessage!!)
             }
 
             LDR.Status.SUCCESS -> {
