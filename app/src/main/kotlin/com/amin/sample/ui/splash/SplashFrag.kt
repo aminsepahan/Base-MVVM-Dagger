@@ -22,5 +22,6 @@ class SplashFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         findNavController().navigate(R.id.action_splashFrag_to_mainActivity)
+        activity?.finish()
     }
 }

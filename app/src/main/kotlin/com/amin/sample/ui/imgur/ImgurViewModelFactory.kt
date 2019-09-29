@@ -1,10 +1,10 @@
-package com.amin.sample.ui.shutterStock
+package com.amin.sample.ui.imgur
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.amin.sample.ui.imgur.ShutterStockViewModel
+import com.amin.sample.ui.shutterStock.ShutterStockViewModel
 
-class ShutterStockViewModelFactory : ViewModelProvider.Factory {
+class ImgurViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")

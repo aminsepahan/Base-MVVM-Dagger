@@ -20,7 +20,7 @@ class PostsFragment : Fragment() {
 
     private lateinit var binding: FragmentPostsBinding
     private lateinit var viewModel: PostsViewModel
-    val postListAdapter: PostListAdapter = PostListAdapter()
+    private val postListAdapter: PostListAdapter = PostListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

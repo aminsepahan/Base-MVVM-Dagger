@@ -13,7 +13,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
-import com.amin.leadme.utils.extensions.toast
 import com.amin.sample.R
 import com.amin.sample.utils.Snippets
 import com.google.android.material.snackbar.Snackbar

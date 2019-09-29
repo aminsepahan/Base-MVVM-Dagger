@@ -5,7 +5,7 @@ import com.amin.sample.di.componet.DaggerPostViewModelInjector
 import com.amin.sample.di.componet.DaggerShutterStockViewModelInjector
 import com.amin.sample.di.module.NetworkModule
 import com.amin.sample.ui.posts.PostsViewModel
-import com.amin.sample.ui.shutterStock.ShutterStockViewModel
+import com.amin.sample.ui.imgur.ShutterStockViewModel
 
 abstract class BaseViewModel : ViewModel() {
     init {

@@ -19,7 +19,7 @@ class PostsViewModelTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var postsViewModel: PostsViewModel
+    private lateinit var postsViewModel: PostsViewModel
 
 
     @Before

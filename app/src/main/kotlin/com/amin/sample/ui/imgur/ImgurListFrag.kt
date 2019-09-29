@@ -24,7 +24,7 @@ import com.amin.sample.utils.view.ItemDecoration
 import kotlinx.coroutines.*
 
 
-class ShutterStockListFrag : Fragment() {
+class ImgurListFrag : Fragment() {
 
     private lateinit var textChangeCountDownJob: Job
     private lateinit var binding: FragShutterStockBinding

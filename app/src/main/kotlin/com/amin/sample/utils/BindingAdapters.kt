@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.amin.leadme.utils.extensions.getParentActivity
+import com.amin.sample.utils.extensions.getParentActivity
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("mutableVisibility")
@@ -30,8 +29,6 @@ fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-    view.setHasFixedSize(true)
-    view.layoutManager = LinearLayoutManager(view.context)
     view.adapter = adapter
 }
 

@@ -1,4 +1,4 @@
-package com.nyp.kartak.base
+package com.amin.sample.base
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

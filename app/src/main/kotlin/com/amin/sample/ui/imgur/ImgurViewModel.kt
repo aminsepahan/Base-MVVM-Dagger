@@ -1,4 +1,4 @@
-package com.amin.sample.ui.shutterStock
+package com.amin.sample.ui.imgur
 
 import androidx.lifecycle.MutableLiveData
 import com.amin.sample.base.BaseResponseShutterStock
@@ -11,7 +11,7 @@ import com.amin.sample.utils.ioThread
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class ShutterStockViewModel: BaseViewModel(){
+class ImgurViewModel: BaseViewModel(){
 
     @Inject
     lateinit var shutterStockApi: ShutterStockApi

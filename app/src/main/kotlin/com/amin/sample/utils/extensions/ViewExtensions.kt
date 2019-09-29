@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.amin.leadme.utils.extensions
+package com.amin.sample.utils.extensions
 
 import android.animation.*
 import android.app.Activity

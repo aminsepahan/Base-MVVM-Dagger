@@ -6,10 +6,9 @@ import com.amin.sample.R
 import com.amin.sample.utils.LDR
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
-import retrofit2.HttpException
 
 class MyMaybeObserverShutter(
-    val loadingVisibility: MutableLiveData<Int>? = null,
+    private val loadingVisibility: MutableLiveData<Int>? = null,
     private val apiShutterStockData: MutableLiveData<LDR<BaseResponseShutterStock>> = MutableLiveData(),
     private val page: Int = 0
 ) : MaybeObserver<BaseResponseShutterStock> {

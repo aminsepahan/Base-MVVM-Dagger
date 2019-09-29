@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.amin.sample.utils.extensions
 
 import android.content.Intent

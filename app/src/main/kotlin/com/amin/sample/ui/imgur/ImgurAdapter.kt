@@ -11,7 +11,7 @@ import com.amin.sample.model.Transition
 import com.amin.sample.base.BaseRecyclerAdapter
 import com.amin.sample.base.BaseViewHolder
 
-class ShutterStockAdapter :
+class ImgurAdapter :
     BaseRecyclerAdapter<BaseViewHolder<ShutterStockImage>, ShutterStockImage, Transition<ShutterStockImage>>() {
     override fun onBindViewHolder(holder: BaseViewHolder<ShutterStockImage>, position: Int) {
         holder.bindItems(modelList[position])

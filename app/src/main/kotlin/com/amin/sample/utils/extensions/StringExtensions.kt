@@ -1,4 +1,4 @@
-package com.amin.leadme.utils.extensions
+package com.amin.sample.utils.extensions
 
 fun String.revertPersianNumbersAndRemoveColon(): String {
     val builder = StringBuilder()

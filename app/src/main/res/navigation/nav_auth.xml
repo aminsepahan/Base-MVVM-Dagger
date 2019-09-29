@@ -14,8 +14,10 @@
                 android:id="@+id/action_splashFrag_to_mainActivity"
                 app:destination="@id/mainActivity" />
         <action
-                android:id="@+id/action_splashFrag_to_mainActivity2"
-                app:destination="@id/mainActivity" />
+            android:id="@+id/action_splashFrag_to_mainActivity2"
+            app:destination="@id/mainActivity"
+            app:popUpTo="@+id/splashFrag"
+            app:popUpToInclusive="true" />
     </fragment>
     <activity
             android:id="@+id/mainActivity"

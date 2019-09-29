@@ -1,7 +1,6 @@
-package com.nyp.kartak.base
+package com.amin.sample.base
 
 import androidx.recyclerview.widget.RecyclerView
-import com.amin.sample.base.BaseListContract
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
@@ -28,7 +27,7 @@ abstract class BaseRecyclerAdapter<VH : BaseViewHolder<M>, M, MC>
         this.modelList.addAll(modelList)
     }
 
-    fun setList(list: List<M>?) {
+    private fun setList(list: List<M>?) {
         if (list != null) {
             this.modelList = list.toMutableList()
         } else {

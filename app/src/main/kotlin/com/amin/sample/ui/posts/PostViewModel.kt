@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.amin.sample.base.BaseViewModel
 import com.amin.sample.base.Configs
 import com.amin.sample.model.Post
-import com.amin.sample.utils.Constants
 
 class PostViewModel : BaseViewModel() {
     private val postTitle = MutableLiveData<String>()
