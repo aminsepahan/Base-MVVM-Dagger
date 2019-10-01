@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amin.sample.R
 import com.amin.sample.base.BaseResponseShutterStock
 import com.amin.sample.databinding.FragShutterStockBinding
-import com.amin.sample.ui.imgur.ShutterStockViewModel
-import com.amin.sample.ui.imgur.ImgurViewModelFactory
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.extensions.showDismissDialog
 import com.amin.sample.utils.view.ItemDecoration
@@ -29,7 +27,7 @@ class ShutterStockListFrag : Fragment() {
     private lateinit var textChangeCountDownJob: Job
     private lateinit var binding: FragShutterStockBinding
     private lateinit var viewModel: ShutterStockViewModel
-    private val listAdapter = ImgurAdapter()
+    private val listAdapter = ShutterStockAdapter()
     private var page = 1
     private var isLoadMore = false
     private var isFinished = false
@@ -39,7 +37,7 @@ class ShutterStockListFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val factory = ImgurViewModelFactory()
+        val factory = ShutterStockViewModelFactory()
 
         viewModel = ViewModelProviders.of(this, factory).get(ShutterStockViewModel::class.java)
         viewModel.apiLiveData.observe(this, this.dataObserver)

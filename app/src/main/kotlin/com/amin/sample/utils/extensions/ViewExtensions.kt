@@ -2,14 +2,18 @@
 
 package com.amin.sample.utils.extensions
 
-import android.animation.*
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.ContextWrapper
 import android.content.res.ColorStateList
-import android.view.*
+import android.view.View
 import android.view.View.*
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -80,7 +84,8 @@ fun Activity.getColorForTint(@ColorRes id: Int): ColorStateList {
 }
 
 fun EditText.showKeyboard() {
-    val inputMethodManager = getActivity()!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    val inputMethodManager =
+        getActivity()!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     requestFocus()
     inputMethodManager.showSoftInput(this, 0)
     setSelection(length())
@@ -116,18 +121,21 @@ fun View.visible() {
 fun View.showHideFade(
     showOrHide: Boolean,
     duration: Long = resources.getInteger(android.R.integer.config_shortAnimTime).toLong(),
-    endListener: () -> Unit = {}
+    endListener: () -> Unit = {},
+    goneOrInvisible: Boolean = true
 ) {
     if (showOrHide && visibility == VISIBLE && alpha == 1f) {
         bringToFront()
         return run(endListener)
     }
-    if (!showOrHide && (visibility == GONE || alpha == 0f)) return run(endListener)
+    if (!showOrHide && (visibility == (if (goneOrInvisible) GONE else INVISIBLE) || alpha == 0f)) return run(
+        endListener
+    )
     animate().setDuration(duration)
         .alpha((if (showOrHide) 1 else 0).toFloat())
         .setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                visibility = if (showOrHide) VISIBLE else GONE
+                visibility = if (showOrHide) VISIBLE else if (goneOrInvisible) GONE else INVISIBLE
                 run(endListener)
             }
 

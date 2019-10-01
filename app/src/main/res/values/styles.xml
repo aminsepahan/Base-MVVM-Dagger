@@ -10,6 +10,14 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="tabStyle">
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabTextColor">@color/themeGray</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+    </style>
+
+
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_back_layers</item>
     </style>

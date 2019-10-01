@@ -2,8 +2,45 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_main"
-            app:startDestination="@id/postsFragment">
+            app:startDestination="@id/circularMenuFrag">
 
     <fragment android:id="@+id/postsFragment" android:name="com.amin.sample.ui.posts.PostsFragment"
               android:label="fragment_posts" tools:layout="@layout/fragment_posts"/>
+    <fragment
+        android:id="@+id/circularMenuFrag"
+        android:name="com.amin.sample.ui.menu.CircularMenuFrag"
+        android:label="frag_circular_menu"
+        tools:layout="@layout/frag_circular_menu" >
+        <action
+            android:id="@+id/action_circularMenuFrag_to_postsFragment"
+            app:destination="@id/postsFragment" />
+        <action
+            android:id="@+id/action_circularMenuFrag_to_shutterStockListFrag"
+            app:destination="@id/shutterStockListFrag" />
+        <action
+            android:id="@+id/action_circularMenuFrag_to_imgurContainerFrag"
+            app:destination="@id/imgurContainerFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/shutterStockListFrag"
+        android:name="com.amin.sample.ui.shutterStock.ShutterStockListFrag"
+        android:label="ShutterStockListFrag" />
+    <fragment
+        android:id="@+id/imgurContainerFrag"
+        android:name="com.amin.sample.ui.imgur.ImgurContainerFrag"
+        tools:layout="@layout/frag_imgur_container"
+        android:label="ImgurContainerFrag" >
+        <action
+            android:id="@+id/action_imgurContainerFrag_to_imgurListFrag"
+            app:destination="@id/imgurListFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/imgurListFrag"
+        android:name="com.amin.sample.ui.imgur.ImgurListFrag"
+        android:label="ImgurListFrag" >
+        <argument
+            android:name="sectionType"
+            app:argType="com.amin.sample.ui.imgur.ImgurFragAdapter$SectionType"
+            android:defaultValue="HOT" />
+    </fragment>
 </navigation>

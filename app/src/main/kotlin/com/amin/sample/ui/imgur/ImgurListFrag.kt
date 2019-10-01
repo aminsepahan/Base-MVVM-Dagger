@@ -1,9 +1,7 @@
-package com.amin.sample.ui.shutterStock
+package com.amin.sample.ui.imgur
 
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,25 +9,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amin.sample.R
 import com.amin.sample.base.BaseResponseShutterStock
-import com.amin.sample.databinding.FragShutterStockBinding
-import com.amin.sample.ui.imgur.ShutterStockViewModel
-import com.amin.sample.ui.imgur.ImgurViewModelFactory
+import com.amin.sample.databinding.FragImgurBinding
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.extensions.showDismissDialog
 import com.amin.sample.utils.view.ItemDecoration
-import kotlinx.coroutines.*
 
 
 class ImgurListFrag : Fragment() {
 
-    private lateinit var textChangeCountDownJob: Job
-    private lateinit var binding: FragShutterStockBinding
-    private lateinit var viewModel: ShutterStockViewModel
+    val args by navArgs<ImgurListFragArgs>()
+    var sort = "viral"
+    private lateinit var binding: FragImgurBinding
+    private lateinit var viewModel: ImgurViewModel
     private val listAdapter = ImgurAdapter()
+    var clickEvent = listAdapter.clickEvent
     private var page = 1
     private var isLoadMore = false
     private var isFinished = false
@@ -41,10 +39,10 @@ class ImgurListFrag : Fragment() {
 
         val factory = ImgurViewModelFactory()
 
-        viewModel = ViewModelProviders.of(this, factory).get(ShutterStockViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(ImgurViewModel::class.java)
         viewModel.apiLiveData.observe(this, this.dataObserver)
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.frag_shutter_stock, container, false
+            inflater, R.layout.frag_imgur, container, false
         )
         val view = binding.root
         binding.rv.layoutManager = GridLayoutManager(activity, 3)
@@ -57,31 +55,7 @@ class ImgurListFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadImages()
-        binding.searchEt.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                if (::textChangeCountDownJob.isInitialized)
-                    textChangeCountDownJob.cancel()
-
-                textChangeCountDownJob = GlobalScope.launch(Dispatchers.Main) {
-                    delay(700)
-                    search(p0.toString())
-                }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-        })
-    }
-
-    private fun search(phrase: String) {
-        page = 1
-        listAdapter.clear()
-        viewModel.searchPhrase = phrase
-        viewModel.loadImages(page)
+        viewModel.loadImages(1, args.sectionType, sort)
     }
 
     private val dataObserver = Observer<LDR<BaseResponseShutterStock>> { result ->
@@ -123,10 +97,16 @@ class ImgurListFrag : Fragment() {
                 ) {
                     page++
                     isLoadMore = true
-                    viewModel.loadImages(page)
+                    viewModel.loadImages(page, args.sectionType, sort)
                 }
             }
         }
     }
 
+    companion object {
+        fun newInstance(bundle: ImgurListFragArgs) =
+            ImgurListFrag().apply {
+                arguments = bundle.toBundle()
+            }
+    }
 }

@@ -9,6 +9,19 @@
     <string name="copied">Copied</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">@android:string/ok</string>
     <string name="search_shutter_stock_hint">Search Shutter Stock</string>
+    <string name="hot">Hot</string>
+    <string name="top">Top</string>
+    <string name="user">User</string>
+    <string name="search">search here</string>
+    <string name="shutter_stock_description">Empower your users with over 225 million stunning royalty-free assets and AI-powered search with a scalable API trusted by Facebook, Google, and more.</string>
+    <string name="shutter_stock_title">Shutter Stock API</string>
+    <string name="lunch">Lunch</string>
+    <string name="to_start_message">To Start, rotate the menu and choose the sample that you want</string>
+    <string name="imgur_title">Imgur Api</string>
+    <string name="imgur_description">Imgur\'s API exposes the entire Imgur infrastructure via a standardized programmatic interface. Using Imgur\'s API, you can do just about anything you can do on imgur.com</string>
+    <string name="posts_title">Fake Online REST API</string>
+    <string name="posts_description">Fake Online REST API for Testing and Prototyping Serving 350M requests per month</string>
+    <string name="empty_slot">This slot is currently empty and if I was unlucky getting hired, I will keep adding more samples from other Assignments, I hope not though :D</string>
 </resources>

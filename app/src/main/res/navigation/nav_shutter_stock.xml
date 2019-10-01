@@ -6,7 +6,7 @@
         app:startDestination="@id/shutterStockListFrag">
     <fragment
             android:id="@+id/shutterStockListFrag"
-            android:name="com.amin.sample.ui.shutterStock.ImgurListFrag"
+            android:name="com.amin.sample.ui.imgur.ImgurListFrag"
             android:label="ShutterStockListFrag"
             tools:layout="@layout/frag_shutter_stock" />
 </navigation>

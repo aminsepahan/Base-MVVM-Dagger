@@ -1,4 +1,4 @@
-package com.amin.sample.ui.shutterStock
+package com.amin.sample.ui.imgur
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

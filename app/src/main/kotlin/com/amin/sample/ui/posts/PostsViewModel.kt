@@ -12,7 +12,7 @@ import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class PostsViewModel: BaseViewModel(){
+class PostsViewModel : BaseViewModel() {
 
     @Inject
     lateinit var postApi: PostApi
@@ -23,7 +23,7 @@ class PostsViewModel: BaseViewModel(){
 
     private lateinit var subscription: Disposable
 
-    fun loadPosts(){
+    fun loadPosts() {
         postApi.getPosts()
             .subscribeOn(ioThread())
             .observeOn(androidThread())
@@ -50,10 +50,5 @@ class PostsViewModel: BaseViewModel(){
             loadingVisibility.value = View.GONE
         }
 
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        subscription.dispose()
     }
 }

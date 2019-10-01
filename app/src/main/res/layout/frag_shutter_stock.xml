@@ -6,11 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.amin.sample.ui.imgur.ShutterStockViewModel" />
+            type="com.amin.sample.ui.shutterStock.ShutterStockViewModel" />
 
         <variable
             name="listAdapter"
-            type="com.amin.sample.ui.shutterStock.ImgurAdapter" />
+            type="com.amin.sample.ui.shutterStock.ShutterStockAdapter" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -26,7 +26,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                app:cardBackgroundColor="@color/baseBackDarker"
+                app:cardBackgroundColor="@color/baseBackColor"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
                 android:layout_margin="5dp"
