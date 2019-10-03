@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.amin.sample.R
-import com.amin.sample.databinding.ItemImageBinding
-import com.amin.sample.model.ShutterStockImage
-import com.amin.sample.model.Transition
 import com.amin.sample.base.BaseRecyclerAdapter
 import com.amin.sample.base.BaseViewHolder
+import com.amin.sample.databinding.ItemImageShutterBinding
+import com.amin.sample.model.ShutterStockImage
+import com.amin.sample.model.Transition
 
 class ShutterStockAdapter :
     BaseRecyclerAdapter<BaseViewHolder<ShutterStockImage>, ShutterStockImage, Transition<ShutterStockImage>>() {
@@ -20,10 +20,10 @@ class ShutterStockAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val binding: ItemImageBinding =
+        val binding: ItemImageShutterBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_image,
+                R.layout.item_image_shutter,
                 parent,
                 false
             )
@@ -34,7 +34,7 @@ class ShutterStockAdapter :
         return modelList.size
     }
 
-    inner class ViewHolder(val binding: ItemImageBinding) :
+    inner class ViewHolder(val binding: ItemImageShutterBinding) :
         BaseViewHolder<ShutterStockImage>(binding) {
 
         init {

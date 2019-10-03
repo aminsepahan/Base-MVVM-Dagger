@@ -22,11 +22,7 @@ import javax.inject.Singleton
 // Safe here as we are dealing with a Dagger 2 module
 @Suppress("unused")
 object NetworkModule {
-    /**
-     * Provides the Post service implementation.
-     * @param retrofit the Retrofit object used to instantiate the service
-     * @return the Post service implementation.
-     */
+
     @Provides
     @Singleton
     internal fun providePostApi(retrofit: Retrofit): PostApi {
@@ -78,7 +74,7 @@ object NetworkModule {
                 )
                 Configs.SampleTypes.IMGUR -> request.addHeader(
                     "Authorization",
-                    "Client-ID f0dbcc673bd4646,Bearer 6ffd4ab21b5fd30f90d9cf9bf4e5e61d9ee9b2a1"
+                    "Client-ID f0dbcc673bd4646"
                 )
                 else -> {
                 }

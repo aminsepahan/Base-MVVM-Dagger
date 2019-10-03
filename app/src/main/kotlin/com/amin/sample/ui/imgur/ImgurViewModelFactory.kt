@@ -8,8 +8,8 @@ class ImgurViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        if (modelClass.isAssignableFrom(ShutterStockViewModel::class.java)) {
-            return ShutterStockViewModel() as T
+        if (modelClass.isAssignableFrom(ImgurViewModel::class.java)) {
+            return ImgurViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

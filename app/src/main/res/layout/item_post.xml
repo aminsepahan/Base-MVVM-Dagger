@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-                name="viewModel"
-                type="com.amin.sample.ui.posts.PostViewModel"/>
+            name="viewModel"
+            type="com.amin.sample.ui.posts.PostViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:cardUseCompatPadding="true"
-    >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="1dp"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/postTitle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+                android:singleLine="true"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/postImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:mutableText="@{viewModel.getPostTitle()}" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/postTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp"
-                    app:mutableText="@{viewModel.getPostTitle()}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/postImage"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/postBody"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="10dp"
-                    app:mutableText="@{viewModel.getPostBody()}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/postImage"
-                    app:layout_constraintTop_toBottomOf="@id/postTitle"/>
+                android:id="@+id/postBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/postImage"
+                app:layout_constraintTop_toBottomOf="@id/postTitle"
+                app:mutableText="@{viewModel.getPostBody()}" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/postImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    app:imageUrl="@{viewModel.getPostImage()}"
-                    android:layout_margin="5dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                android:id="@+id/postImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                app:imageUrl="@{viewModel.getPostImage()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

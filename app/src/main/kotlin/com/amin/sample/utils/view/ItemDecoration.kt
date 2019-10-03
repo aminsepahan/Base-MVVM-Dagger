@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 class ItemDecoration(private val spacing: Int = 5, val includeEdge: Boolean = true) :
@@ -15,7 +16,13 @@ class ItemDecoration(private val spacing: Int = 5, val includeEdge: Boolean = tr
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view) // item position
-        val spanCount = (parent.layoutManager as GridLayoutManager).spanCount
+        val spanCount =
+            if (parent.layoutManager is StaggeredGridLayoutManager)
+                (parent.layoutManager as StaggeredGridLayoutManager).spanCount
+            else if (parent.layoutManager is GridLayoutManager)
+                (parent.layoutManager as GridLayoutManager).spanCount
+            else 1
+
         val column = position % spanCount// item column
 
         if (includeEdge) {

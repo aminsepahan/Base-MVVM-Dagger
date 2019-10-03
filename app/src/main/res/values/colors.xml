@@ -2,10 +2,12 @@
 <resources>
     <color name="colorPrimary">#cb5ab1</color>
     <color name="colorPrimaryDark">#AD4C97</color>
-    <color name="colorAccent">#f37e29</color>
+    <color name="colorAccent">#cb5ab1</color>
     <color name="baseBackColor">#FFFFFF</color>
     <color name="baseBackDarker">#FAFAFA</color>
     <color name="statusBarColor">#FFFFFF</color>
+    <color name="imgurImageCaptionBackground">#474A51</color>
+    <color name="imgurImageCaptionTint">#8f9195</color>
 
     //general
     <color name="themeYellow">#E0B817</color>

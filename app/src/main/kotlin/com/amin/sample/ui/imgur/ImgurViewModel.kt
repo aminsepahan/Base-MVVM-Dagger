@@ -1,9 +1,10 @@
 package com.amin.sample.ui.imgur
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
-import com.amin.sample.base.BaseResponseShutterStock
+import com.amin.sample.base.BaseResponseImgur
 import com.amin.sample.base.BaseViewModel
-import com.amin.sample.base.MyMaybeObserverShutter
+import com.amin.sample.base.MyMaybeObserverImgur
 import com.amin.sample.network.ImgurApi
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.androidThread
@@ -14,21 +15,22 @@ import javax.inject.Inject
 class ImgurViewModel : BaseViewModel() {
 
     @Inject
-    lateinit var api: ImgurApi
+    lateinit var imgurApi: ImgurApi
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val apiLiveData: MutableLiveData<LDR<BaseResponseShutterStock>> = MutableLiveData()
+    val apiLiveData: MutableLiveData<LDR<BaseResponseImgur>> = MutableLiveData()
 
     private var subscription: Disposable? = null
+    @SuppressLint("DefaultLocale")
     fun loadImages(
         page: Int = 1,
         section: ImgurFragAdapter.SectionType,
         sort: String = "viral"
     ) {
-        api.getGalley(section.name, sort, page)
+        imgurApi.getGalley(section.name.toLowerCase(), sort, page)
             .subscribeOn(ioThread())
             .observeOn(androidThread())
-            .subscribe(MyMaybeObserverShutter(loadingVisibility, apiLiveData))
+            .subscribe(MyMaybeObserverImgur(loadingVisibility, apiLiveData, page))
     }
 
     override fun onCleared() {

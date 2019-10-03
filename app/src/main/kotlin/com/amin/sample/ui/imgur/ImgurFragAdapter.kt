@@ -31,7 +31,7 @@ class ImgurFragAdapter(
             override fun getTitle() = "Top"
         },
         USER(2){
-            override fun getTitle() = "Hot"
+            override fun getTitle() = "User"
         };
 
         abstract fun getTitle(): String

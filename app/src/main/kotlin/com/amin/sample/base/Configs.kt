@@ -9,7 +9,7 @@ object Configs {
     fun getBaseURL() = when (sampleMode) {
         SampleTypes.BLOG_POSTS -> "https://jsonplaceholder.typicode.com/"
         SampleTypes.SHUTTER_STOCK -> "https://api.shutterstock.com/v2/"
-        SampleTypes.IMGUR -> "https://api.imgur.com/3/gallery/"
+        SampleTypes.IMGUR -> "https://api.imgur.com/3/"
         else -> "https://jsonplaceholder.typicode.com/"
     }
 
