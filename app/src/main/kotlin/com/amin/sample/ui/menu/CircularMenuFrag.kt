@@ -74,13 +74,13 @@ class CircularMenuFrag : BaseFragment() {
         scoreBoard.setOnTouchListener(listener)
         lunchBtn.setOnClickListener {
             Configs.SampleTypes.fromInt(currentSlice).apply {
-                Configs.sampleMode = this!!
-                lunchSampleModes(Configs.sampleMode)
+                lunchSampleModes(this!!)
             }
         }
     }
 
     private fun lunchSampleModes(sampleMode: Configs.SampleTypes) {
+        Configs.sampleMode = sampleMode
         when (sampleMode) {
             SHUTTER_STOCK -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToShutterStockListFrag())
             IMGUR -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToImgurContainerFrag())

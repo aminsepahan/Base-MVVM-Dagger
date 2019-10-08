@@ -1,8 +1,11 @@
 package com.amin.sample.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ImgurImage(
     @SerializedName("account_id")
     val accountId: Int,
@@ -18,7 +21,6 @@ data class ImgurImage(
     val width: Int,
     val height: Int,
     val datetime: Int,
-    val description: Any,
     val downs: String,
     val favorite: Boolean,
     @SerializedName("favorite_count")
@@ -43,62 +45,48 @@ data class ImgurImage(
     val privacy: String,
     val score: Int,
     val section: String,
-    val tags: List<Any>,
     val title: String,
     val topic: String,
     @SerializedName("topic_id")
     val topicId: Int,
     val ups: String,
-    val views: String,
-    val vote: Any
-) {
+    val views: String
+) : Parcelable {
 
     fun getImageLink(): String? =
         if (isAlbum && images.isNotEmpty()) {
             "https://i.imgur.com/${cover}.jpg"
         } else link
 
-
+    @Parcelize
     data class Image(
-        @SerializedName("account_id")
-        val accountId: Any,
-        @SerializedName("account_url")
-        val accountUrl: Any,
-        @SerializedName("ad_type")
-        val adType: Int,
-        @SerializedName("ad_url")
-        val adUrl: String,
         val animated: Boolean,
         val bandwidth: Long,
         @SerializedName("comment_count")
-        val commentCount: Any,
+        val commentCount: String,
         val datetime: Int,
-        val description: Any,
-        val downs: Any,
+        val description: String,
+        val downs: String,
         val edited: String,
         val favorite: Boolean,
         @SerializedName("favorite_count")
-        val favoriteCount: Any,
+        val favoriteCount: String,
         @SerializedName("has_sound")
         val hasSound: Boolean,
         val height: Int,
         val id: String,
-        @SerializedName("in_gallery")
-        val inGallery: Boolean,
-        @SerializedName("in_most_viral")
-        val inMostViral: Boolean,
         @SerializedName("is_ad")
         val isAd: Boolean,
         val link: String,
         val size: Int,
-        val tags: List<Any>,
-        val title: Any,
+        val tags: List<String>,
+        val title: String,
         val type: String,
         val mp4: String,
         val gifv: String,
-        val ups: Any,
+        val ups: String,
         val views: Int,
         val width: Int
-    )
+    ) : Parcelable
 
 }

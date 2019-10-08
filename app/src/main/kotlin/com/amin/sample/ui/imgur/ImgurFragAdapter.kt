@@ -16,7 +16,7 @@ class ImgurFragAdapter(
     }
 
     override fun getCount(): Int {
-        return 3
+        return fragList.size
     }
 
     override fun getPageTitle(position: Int): CharSequence {

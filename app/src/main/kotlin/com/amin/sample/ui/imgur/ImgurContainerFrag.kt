@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.amin.sample.R
 import com.amin.sample.base.BaseFragment
@@ -56,6 +57,7 @@ class ImgurContainerFrag : BaseFragment() {
             vp,
             vp.currentItem
         ) as ImgurListFrag?)?.clickEvent?.subscribe { model ->
+            findNavController().navigate(ImgurContainerFragDirections.actionImgurContainerFragToDetailsFragment(model))
         }
     }
 }

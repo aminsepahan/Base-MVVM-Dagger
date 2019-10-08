@@ -13,7 +13,7 @@ import com.amin.sample.model.ImgurImage
 import com.amin.sample.model.Transition
 
 class ImgurAdapter :
-    BaseRecyclerAdapter<BaseViewHolder<ImgurImage>, ImgurImage, Transition<ImgurImage>>() {
+    BaseRecyclerAdapter<BaseViewHolder<ImgurImage>, ImgurImage, Transition>() {
     override fun onBindViewHolder(holder: BaseViewHolder<ImgurImage>, position: Int) {
         holder.bindItems(modelList[position])
     }
@@ -40,7 +40,16 @@ class ImgurAdapter :
 
         init {
             binding.cv.setOnClickListener {
-                clickSubject.onNext(Transition(modelList[layoutPosition], binding.coverImageView))
+                clickSubject.onNext(
+                    Transition(
+                        model = modelList[layoutPosition],
+                        image = modelList[layoutPosition].getImageLink()!!,
+                        title = modelList[layoutPosition].title,
+                        imageTransition = binding.coverImageView.transitionName,
+                        titleTransition = binding.caption.transitionName
+                    )
+
+                )
             }
         }
 

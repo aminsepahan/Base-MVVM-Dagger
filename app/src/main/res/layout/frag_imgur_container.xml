@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:padding="10dp"
-            app:layout_scrollFlags="scroll"
-            android:src="@drawable/img_imgur_logo" />
+            android:src="@drawable/img_imgur_logo"
+            app:layout_scrollFlags="scroll" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -50,7 +50,8 @@
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout="@layout/frag_imgur" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

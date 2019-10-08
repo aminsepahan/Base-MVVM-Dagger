@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_main"
-            app:startDestination="@id/circularMenuFrag">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/circularMenuFrag">
 
-    <fragment android:id="@+id/postsFragment" android:name="com.amin.sample.ui.posts.PostsFragment"
-              android:label="fragment_posts" tools:layout="@layout/fragment_posts"/>
+    <fragment
+        android:id="@+id/postsFragment"
+        android:name="com.amin.sample.ui.posts.PostsFragment"
+        android:label="fragment_posts"
+        tools:layout="@layout/fragment_posts" >
+        <action
+            android:id="@+id/action_postsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/circularMenuFrag"
         android:name="com.amin.sample.ui.menu.CircularMenuFrag"
         android:label="frag_circular_menu"
-        tools:layout="@layout/frag_circular_menu" >
+        tools:layout="@layout/frag_circular_menu">
         <action
             android:id="@+id/action_circularMenuFrag_to_postsFragment"
             app:destination="@id/postsFragment" />
@@ -24,23 +32,41 @@
     <fragment
         android:id="@+id/shutterStockListFrag"
         android:name="com.amin.sample.ui.shutterStock.ShutterStockListFrag"
-        android:label="ShutterStockListFrag" />
+        android:label="ShutterStockListFrag"
+        tools:layout="@layout/frag_shutter_stock">
+        <action
+            android:id="@+id/action_shutterStockListFrag_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/imgurContainerFrag"
         android:name="com.amin.sample.ui.imgur.ImgurContainerFrag"
-        tools:layout="@layout/frag_imgur_container"
-        android:label="ImgurContainerFrag" >
+        android:label="ImgurContainerFrag"
+        tools:layout="@layout/frag_imgur_container">
         <action
             android:id="@+id/action_imgurContainerFrag_to_imgurListFrag"
             app:destination="@id/imgurListFrag" />
+        <action
+            android:id="@+id/action_imgurContainerFrag_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/imgurListFrag"
         android:name="com.amin.sample.ui.imgur.ImgurListFrag"
-        android:label="ImgurListFrag" >
+        android:label="ImgurListFrag"
+        tools:layout="@layout/frag_imgur">
         <argument
             android:name="sectionType"
-            app:argType="com.amin.sample.ui.imgur.ImgurFragAdapter$SectionType"
-            android:defaultValue="HOT" />
+            android:defaultValue="HOT"
+            app:argType="com.amin.sample.ui.imgur.ImgurFragAdapter$SectionType" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.amin.sample.ui.detail.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="model"
+            app:argType="com.amin.sample.model.Transition" />
     </fragment>
 </navigation>

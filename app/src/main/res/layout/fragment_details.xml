@@ -1,14 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.detail.DetailsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="model"
+            type="com.amin.sample.model.Transition" />
+
+        <variable
+            name="imgurData"
+            type="com.amin.sample.model.ImgurImage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/imgurImageCaptionBackground">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/coverImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:transitionName="imageView"
+            app:imageUrl="@{model.imageUrl}"
+            app:layout_constraintBottom_toTopOf="@+id/caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"
+            tools:targetApi="lollipop" />
+
+        <View
+            android:id="@+id/captionBack"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="0dp"
+            android:background="@color/imgurImageCaptionBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/caption" />
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:maxLines="2"
+            android:paddingStart="10dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="10sp"
+            android:text="@{model.title}"
+            android:textColor="@color/baseBackDarker"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/upVotes"
+            tools:text="He's fine, dear, Wolfie's just fine" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/upVotesImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@+id/upVotes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            app:srcCompat="@drawable/ic_up_vote"
+            app:tint="@color/imgurImageCaptionTint" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/upVotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:text="@{imgurData.ups}"
+            android:textColor="@color/imgurImageCaptionTint"
+            android:textSize="@dimen/imgur_caption_votes_ts"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/downVotesImg"
+            app:layout_constraintStart_toEndOf="@id/upVotesImg"
+            tools:text="253" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/downVotesImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@+id/downVotes"
+            app:layout_constraintStart_toEndOf="@id/upVotes"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            app:srcCompat="@drawable/ic_down_vote"
+            app:tint="@color/imgurImageCaptionTint" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/downVotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{imgurData.downs}"
+            android:textColor="@color/imgurImageCaptionTint"
+            android:textSize="@dimen/imgur_caption_votes_ts"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@id/commentsImg"
+            app:layout_constraintStart_toEndOf="@id/downVotesImg"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            tools:text="253" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/commentsImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@+id/comments"
+            app:layout_constraintStart_toEndOf="@id/downVotes"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            app:srcCompat="@drawable/ic_comment"
+            app:tint="@color/imgurImageCaptionTint" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/comments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{imgurData.commentCount}"
+            android:textColor="@color/imgurImageCaptionTint"
+            android:textSize="@dimen/imgur_caption_votes_ts"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@+id/viewsImg"
+            app:layout_constraintStart_toEndOf="@id/commentsImg"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            tools:text="253" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/viewsImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toStartOf="@+id/views"
+            app:layout_constraintStart_toEndOf="@id/comments"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            app:srcCompat="@drawable/ic_views"
+            app:tint="@color/imgurImageCaptionTint" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{imgurData.views}"
+            android:textColor="@color/imgurImageCaptionTint"
+            android:textSize="@dimen/imgur_caption_votes_ts"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/upVotes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/viewsImg"
+            app:layout_constraintTop_toTopOf="@+id/upVotes"
+            tools:text="253" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

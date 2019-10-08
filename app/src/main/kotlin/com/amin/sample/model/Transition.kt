@@ -1,10 +1,13 @@
 package com.amin.sample.model
 
-import android.widget.ImageView
-import android.widget.TextView
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-data class Transition<T>(
-    val model: T,
-    val imageView: ImageView? = null,
-    val title: TextView? = null
-)
+@Parcelize
+data class Transition(
+    val model: ImgurImage? = null,
+    val image: String,
+    val title: String,
+    val imageTransition: String? = null,
+    val titleTransition: String? = null
+) : Parcelable

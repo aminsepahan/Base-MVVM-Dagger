@@ -9,6 +9,7 @@ import com.amin.sample.network.ImgurApi
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.androidThread
 import com.amin.sample.utils.ioThread
+import com.amin.sample.utils.test.EspressoIdlingResource
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
@@ -29,6 +30,8 @@ class ImgurViewModel : BaseViewModel() {
     ) {
         imgurApi.getGalley(section.name.toLowerCase(), sort, page)
             .subscribeOn(ioThread())
+            .doOnSubscribe { EspressoIdlingResource.increment() }
+            .doFinally { EspressoIdlingResource.decrement() }
             .observeOn(androidThread())
             .subscribe(MyMaybeObserverImgur(loadingVisibility, apiLiveData, page))
     }
