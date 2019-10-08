@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.amin.sample.R
 import com.amin.sample.base.BaseFragment
 import com.amin.sample.base.Configs
@@ -15,11 +16,13 @@ import com.amin.sample.model.MainMenuItem
 import com.amin.sample.utils.extensions.showHideFade
 import com.github.florent37.viewanimator.ViewAnimator
 import kotlinx.android.synthetic.main.frag_circular_menu.*
+import kotlinx.android.synthetic.main.frag_circular_menu.view.*
 
 @Suppress("unused")
 class CircularMenuFrag : BaseFragment() {
 
     private var currentMenu: MainMenuItem? = null
+    private var listAdapter = MainMenuAdapter()
     private var currentSlice: Int = 0
     private var initX: Float = 0f
     private var rotation = 0f
@@ -31,7 +34,21 @@ class CircularMenuFrag : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.frag_circular_menu, container, false)
+        val view = inflater.inflate(R.layout.frag_circular_menu, container, false)
+        val modelList: MutableList<MainMenuItem> = mutableListOf()
+        for (i in 0 until Configs.effectiveSize) {
+            modelList.add(MainMenuItem.createMenuItem(Configs.SampleTypes.fromInt(i)!!))
+        }
+        view.rv.layoutManager = LinearLayoutManager(activity)
+        view.rv.setHasFixedSize(true)
+        view.rv.adapter = listAdapter.apply {
+            updateList(modelList)
+        }
+        subscribe = listAdapter.clickEvent
+            .subscribe {
+                lunchSampleModes(it)
+            }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,13 +75,17 @@ class CircularMenuFrag : BaseFragment() {
         lunchBtn.setOnClickListener {
             Configs.SampleTypes.fromInt(currentSlice).apply {
                 Configs.sampleMode = this!!
-                when (this) {
-                    SHUTTER_STOCK -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToShutterStockListFrag())
-                    IMGUR -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToImgurContainerFrag())
-                    BLOG_POSTS -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToPostsFragment())
-                    else -> {
-                    }
-                }
+                lunchSampleModes(Configs.sampleMode)
+            }
+        }
+    }
+
+    private fun lunchSampleModes(sampleMode: Configs.SampleTypes) {
+        when (sampleMode) {
+            SHUTTER_STOCK -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToShutterStockListFrag())
+            IMGUR -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToImgurContainerFrag())
+            BLOG_POSTS -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToPostsFragment())
+            else -> {
             }
         }
     }

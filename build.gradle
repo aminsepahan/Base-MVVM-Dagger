@@ -36,4 +36,5 @@ ext {
     fragmentVersion = '1.2.0-alpha04'
     activityVersion = '1.1.0-alpha03'
     kotlinCoroutinesVersion = '1.1.1'
+    espressoVersion = '3.3.0-alpha02'
 }
