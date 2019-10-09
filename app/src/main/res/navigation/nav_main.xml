@@ -9,7 +9,7 @@
         android:id="@+id/postsFragment"
         android:name="com.amin.sample.ui.posts.PostsFragment"
         android:label="fragment_posts"
-        tools:layout="@layout/fragment_posts" >
+        tools:layout="@layout/frag_posts" >
         <action
             android:id="@+id/action_postsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -64,9 +64,9 @@
         android:id="@+id/detailsFragment"
         android:name="com.amin.sample.ui.detail.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/frag_details" >
         <argument
             android:name="model"
-            app:argType="com.amin.sample.model.Transition" />
+            app:argType="com.amin.sample.model.DetailFragData" />
     </fragment>
 </navigation>

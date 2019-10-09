@@ -12,7 +12,7 @@ import com.amin.sample.model.ShutterStockImage
 import com.amin.sample.model.Transition
 
 class ShutterStockAdapter :
-    BaseRecyclerAdapter<BaseViewHolder<ShutterStockImage>, ShutterStockImage, Transition<ShutterStockImage>>() {
+    BaseRecyclerAdapter<BaseViewHolder<ShutterStockImage>, ShutterStockImage, Transition>() {
     override fun onBindViewHolder(holder: BaseViewHolder<ShutterStockImage>, position: Int) {
         holder.bindItems(modelList[position])
     }
@@ -39,7 +39,13 @@ class ShutterStockAdapter :
 
         init {
             binding.cv.setOnClickListener {
-                clickSubject.onNext(Transition(modelList[layoutPosition], binding.coverImageView))
+                clickSubject.onNext(
+                    Transition(
+                        imageUrl = modelList[layoutPosition].assets.hugeThumb.url,
+                        title = modelList[layoutPosition].description,
+                        imageTransition = binding.coverImageView
+                    )
+                )
             }
         }
 

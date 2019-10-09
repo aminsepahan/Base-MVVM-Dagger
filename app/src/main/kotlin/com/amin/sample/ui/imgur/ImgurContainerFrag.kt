@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.amin.sample.R
 import com.amin.sample.base.BaseFragment
-import com.amin.sample.utils.extensions.showKeyboard
-import com.amin.sample.utils.extensions.string
+import com.amin.sample.model.DetailFragData
 import kotlinx.android.synthetic.main.frag_imgur_container.*
 import kotlinx.android.synthetic.main.frag_imgur_container.view.*
 
@@ -21,11 +21,13 @@ class ImgurContainerFrag : BaseFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.frag_imgur_container, container, false)
         view.vp.offscreenPageLimit = 2
-        view.vp.adapter = ImgurFragAdapter(childFragmentManager, mutableListOf(
-            ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.HOT)),
-            ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.TOP)),
-            ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.USER))
-        ))
+        view.vp.adapter = ImgurFragAdapter(
+            childFragmentManager, mutableListOf(
+                ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.HOT)),
+                ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.TOP)),
+                ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.USER))
+            )
+        )
         view.tabs.setupWithViewPager(view.vp)
         return view
     }
@@ -52,12 +54,38 @@ class ImgurContainerFrag : BaseFragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun setListClickListener(it: ImgurFragAdapter) {
         subscribe = (it.instantiateItem(
             vp,
             vp.currentItem
         ) as ImgurListFrag?)?.clickEvent?.subscribe { model ->
-            findNavController().navigate(ImgurContainerFragDirections.actionImgurContainerFragToDetailsFragment(model))
+            val extras = if (model.titleTransition != null) {
+                FragmentNavigatorExtras(
+                    model.imageTransition to model.imageTransition.transitionName,
+                    model.titleTransition to model.titleTransition.transitionName
+                )
+            } else {
+                FragmentNavigatorExtras(
+                    model.imageTransition to model.imageTransition.transitionName
+                )
+            }
+            findNavController().navigate(
+                ImgurContainerFragDirections.actionImgurContainerFragToDetailsFragment(
+                    DetailFragData(
+                        model.model,
+                        model.imageUrl,
+                        model.title,
+                        model.imageTransition.transitionName,
+                        model.titleTransition?.transitionName
+                    )
+                ),
+                extras
+            )
+
         }
     }
 }

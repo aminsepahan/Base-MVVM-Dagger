@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#AD4C97</color>
     <color name="colorAccent">#cb5ab1</color>
     <color name="baseBackColor">#FFFFFF</color>
-    <color name="baseBackDarker">#FAFAFA</color>
+    <color name="baseBackDarker">#F1F1F1</color>
     <color name="statusBarColor">#FFFFFF</color>
     <color name="imgurImageCaptionBackground">#474A51</color>
     <color name="imgurImageCaptionTint">#8f9195</color>

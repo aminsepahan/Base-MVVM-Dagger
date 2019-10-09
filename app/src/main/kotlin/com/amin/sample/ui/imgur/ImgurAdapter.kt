@@ -43,10 +43,10 @@ class ImgurAdapter :
                 clickSubject.onNext(
                     Transition(
                         model = modelList[layoutPosition],
-                        image = modelList[layoutPosition].getImageLink()!!,
+                        imageUrl = modelList[layoutPosition].getImageLink()!!,
                         title = modelList[layoutPosition].title,
-                        imageTransition = binding.coverImageView.transitionName,
-                        titleTransition = binding.caption.transitionName
+                        imageTransition = binding.coverImageView,
+                        titleTransition = binding.caption
                     )
 
                 )
@@ -65,6 +65,8 @@ class ImgurAdapter :
                 )
             }
             constraintSet.applyTo(binding.itemLay)
+            binding.coverImageView.transitionName = "imageView-$adapterPosition"
+            binding.caption.transitionName = "title-$adapterPosition"
         }
     }
 }

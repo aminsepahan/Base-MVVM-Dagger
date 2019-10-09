@@ -106,7 +106,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:2.27.0'
     implementation 'com.github.florent37:viewanimator:1.1.0'
 
-    //image loader
+    //imageUrl loader
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'

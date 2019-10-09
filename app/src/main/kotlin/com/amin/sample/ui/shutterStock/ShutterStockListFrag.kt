@@ -8,21 +8,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amin.sample.R
+import com.amin.sample.base.BaseFragment
 import com.amin.sample.base.BaseResponseShutterStock
 import com.amin.sample.databinding.FragShutterStockBinding
+import com.amin.sample.model.DetailFragData
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.extensions.showDismissDialog
 import com.amin.sample.utils.view.ItemDecoration
 import kotlinx.coroutines.*
 
 
-class ShutterStockListFrag : Fragment() {
+class ShutterStockListFrag : BaseFragment() {
 
     private lateinit var textChangeCountDownJob: Job
     private lateinit var binding: FragShutterStockBinding
@@ -36,9 +39,7 @@ class ShutterStockListFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val factory = ShutterStockViewModelFactory()
-
         viewModel = ViewModelProviders.of(this, factory).get(ShutterStockViewModel::class.java)
         viewModel.apiLiveData.observe(this, this.dataObserver)
         binding = DataBindingUtil.inflate(
@@ -50,6 +51,23 @@ class ShutterStockListFrag : Fragment() {
         binding.rv.addItemDecoration(ItemDecoration())
         binding.viewModel = viewModel
         binding.listAdapter = listAdapter
+        subscribe = listAdapter.clickEvent.subscribe { model ->
+            val extras = FragmentNavigatorExtras(
+                model.imageTransition to model.imageTransition.transitionName
+            )
+            findNavController().navigate(
+                ShutterStockListFragDirections.actionShutterStockListFragToDetailsFragment(
+                    DetailFragData(
+                        model.model,
+                        model.imageUrl,
+                        model.title,
+                        model.imageTransition.transitionName,
+                        model.titleTransition?.transitionName
+                    )
+                ),
+                extras
+            )
+        }
         return view
     }
 

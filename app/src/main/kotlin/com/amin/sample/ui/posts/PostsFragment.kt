@@ -11,14 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amin.sample.R
-import com.amin.sample.databinding.FragmentPostsBinding
+import com.amin.sample.databinding.FragPostsBinding
 import com.amin.sample.model.Post
 import com.amin.sample.utils.LDR
 
 
 class PostsFragment : Fragment() {
 
-    private lateinit var binding: FragmentPostsBinding
+    private lateinit var binding: FragPostsBinding
     private lateinit var viewModel: PostsViewModel
     private val postListAdapter: PostListAdapter = PostListAdapter()
 
@@ -32,7 +32,7 @@ class PostsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, factory).get(PostsViewModel::class.java)
         viewModel.postLiveData.observe(this, this.dataObserver)
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_posts, container, false
+            inflater, R.layout.frag_posts, container, false
         )
         val view = binding.root
 
