@@ -102,6 +102,9 @@ fun View.getActivity(): AppCompatActivity? {
     return null
 }
 
+fun ViewGroup.children() =
+    (0 until childCount).map { getChildAt(it) }
+
 fun View.gone(goneOrVisible: Boolean) {
     visibility = if (goneOrVisible) GONE else VISIBLE
 }

@@ -24,4 +24,5 @@
     <string name="posts_title">Fake Online REST API</string>
     <string name="posts_description">Fake Online REST API for Testing and Prototyping Serving 350M requests per month</string>
     <string name="empty_slot">This slot is currently empty and if I was unlucky getting hired, I will keep adding more samples from other Assignments, I hope not though :D</string>
+    <string name="box">M0,0h12v12h-12z</string>
 </resources>

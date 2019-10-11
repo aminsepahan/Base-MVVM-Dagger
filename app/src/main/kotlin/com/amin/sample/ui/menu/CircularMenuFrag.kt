@@ -42,7 +42,7 @@ class CircularMenuFrag : BaseFragment() {
         view.rv.layoutManager = LinearLayoutManager(activity)
         view.rv.setHasFixedSize(true)
         view.rv.adapter = listAdapter.apply {
-            updateList(modelList)
+            setModelListForAdapter(modelList)
         }
         subscribe = listAdapter.clickEvent
             .subscribe {
@@ -71,7 +71,7 @@ class CircularMenuFrag : BaseFragment() {
             }
             true
         })
-        scoreBoard.setOnTouchListener(listener)
+        menuWheel.setOnTouchListener(listener)
         lunchBtn.setOnClickListener {
             Configs.SampleTypes.fromInt(currentSlice).apply {
                 lunchSampleModes(this!!)
@@ -85,18 +85,17 @@ class CircularMenuFrag : BaseFragment() {
             SHUTTER_STOCK -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToShutterStockListFrag())
             IMGUR -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToImgurContainerFrag())
             BLOG_POSTS -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToPostsFragment())
-            else -> {
-            }
+            else -> { }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        scoreBoard.rotation = rotation
+        menuWheel.rotation = rotation
     }
 
     private fun setWheel() {
-        scoreBoard.rotation = 0F
+        menuWheel.rotation = 0F
     }
 
     private fun movePrecisely() {
@@ -128,7 +127,7 @@ class CircularMenuFrag : BaseFragment() {
 
     private fun startAnimation(rotationRadius: Float) {
 
-        ViewAnimator.animate(scoreBoard)
+        ViewAnimator.animate(menuWheel)
             .rotation(rotation + rotationRadius)
             .decelerate().duration(200)
             .onStop {

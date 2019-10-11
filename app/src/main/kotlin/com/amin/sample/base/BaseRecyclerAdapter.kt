@@ -18,12 +18,11 @@ abstract class BaseRecyclerAdapter<VH : BaseViewHolder<M>, M, MC>
     val clickEvent: Observable<MC> = clickSubject
     var modelList: MutableList<M> = mutableListOf()
 
-    override fun setModelListForAdapter(modelList: MutableList<M>) {
-        this.modelList = modelList
+    override fun setModelListForAdapter(modelList: List<M>) {
+        this.modelList = modelList.toMutableList()
     }
 
     override fun addItems(modelList: MutableList<M>) {
-
         this.modelList.addAll(modelList)
     }
 

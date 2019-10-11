@@ -52,6 +52,7 @@ class ShutterStockAdapter :
         @SuppressLint("SetTextI18n")
         override fun bindItems(model: ShutterStockImage) {
             binding.model = model
+            binding.coverImageView.transitionName = "imageView-$adapterPosition"
         }
     }
 }

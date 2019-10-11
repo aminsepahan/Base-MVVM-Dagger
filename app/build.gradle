@@ -44,7 +44,7 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
-    buildToolsVersion = '29.0.0 rc2'
+    buildToolsVersion = '29.0.2'
 }
 
 dependencies {

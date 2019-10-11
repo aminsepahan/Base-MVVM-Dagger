@@ -30,15 +30,15 @@ class DetailsFragment : Fragment() {
         if (args.model.model != null) {
             binding.imgurData = args.model.model
         } else {
-            binding.upVotes.gone()
+            binding.imgurDetails.gone()
         }
 
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         ViewCompat.setTransitionName(binding.coverImageView, args.model.imageTransition)
-        ViewCompat.setTransitionName(binding.caption, args.model.titleTransition)
+        if (args.model.titleTransition != null) {
+            ViewCompat.setTransitionName(binding.caption, args.model.titleTransition)
+        }
         return binding.root
     }
 

@@ -1,10 +1,13 @@
 package com.amin.sample.ui.imgur
 
 
+import android.graphics.drawable.Animatable2
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,6 +22,8 @@ import com.amin.sample.base.BaseResponseImgur
 import com.amin.sample.databinding.FragImgurBinding
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.extensions.showDismissDialog
+import com.amin.sample.utils.extensions.start
+import com.amin.sample.utils.extensions.stop
 import com.amin.sample.utils.view.ItemDecoration
 
 
@@ -58,7 +63,9 @@ class ImgurListFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadImages(1, args.sectionType, sort)
+        if (listAdapter.isEmpty()) {
+            viewModel.loadImages(1, args.sectionType, sort)
+        }
     }
 
     private val dataObserver = Observer<LDR<BaseResponseImgur>> { result ->
@@ -80,11 +87,13 @@ class ImgurListFrag : Fragment() {
     override fun onPause() {
         super.onPause()
         binding.rv.removeOnScrollListener(onScrollChangeListener)
+        binding.rootLay.children.filterIsInstance<ImageView>().forEach { it.stop() }
     }
 
     override fun onResume() {
         super.onResume()
         binding.rv.addOnScrollListener(onScrollChangeListener)
+        binding.rootLay.children.filterIsInstance<ImageView>().forEach { it.start() }
     }
 
     private val onScrollChangeListener = object : RecyclerView.OnScrollListener() {
@@ -116,4 +125,5 @@ class ImgurListFrag : Fragment() {
                 arguments = bundle.toBundle()
             }
     }
+
 }

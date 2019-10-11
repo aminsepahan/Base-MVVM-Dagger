@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/postsFragment"
-        android:name="com.amin.sample.ui.posts.PostsFragment"
+        android:name="com.amin.sample.ui.posts.PostsFrag"
         android:label="fragment_posts"
         tools:layout="@layout/frag_posts" >
         <action

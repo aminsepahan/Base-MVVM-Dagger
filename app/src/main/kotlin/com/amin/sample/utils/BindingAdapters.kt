@@ -47,6 +47,7 @@ fun downloadWithPicasso(view: ImageView, imageUrl: String?) {
                 Glide.with(view).load(imageUrl).centerInside().into(view)
             }
             Configs.SampleTypes.BLOG_POSTS -> {
+                view.tag = imageUrl
                 Picasso.get().load(imageUrl).into(view)
             }
             else -> {

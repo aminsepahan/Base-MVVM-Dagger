@@ -1,6 +1,9 @@
 package com.amin.sample.base
 
 import androidx.fragment.app.Fragment
+import com.amin.sample.R
+import com.amin.sample.utils.extensions.showDismissDialog
+import com.amin.sample.utils.extensions.snack
 import io.reactivex.disposables.Disposable
 
 open class BaseFragment : Fragment() {
@@ -22,4 +25,30 @@ open class BaseFragment : Fragment() {
             field?.dispose()
             field = value
         }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onError(message: String?, action: () -> Unit = {}, snackOrAlert: Boolean = false) {
+        if (message != null) {
+            if (snackOrAlert) {
+                snack(message)
+            } else {
+                activity?.showDismissDialog(message, getString(R.string.ok), okListener = {})
+            }
+        }
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onError(error: Throwable?, action: () -> Unit = {}) {
+        if (error != null) {
+            activity?.showDismissDialog(
+                error.localizedMessage,
+                getString(R.string.ok),
+                okListener = {})
+        } else {
+            activity?.showDismissDialog(
+                getString(R.string.something_went_wrong),
+                getString(R.string.ok),
+                okListener = {})
+        }
+    }
 }

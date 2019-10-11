@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.detail.DetailsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.DetailsFragment">
 
     <data>
 
         <variable
-                name="model"
-                type="com.amin.sample.model.DetailFragData" />
+            name="model"
+            type="com.amin.sample.model.DetailFragData" />
 
         <variable
-                name="imgurData"
-                type="com.amin.sample.model.ImgurImage" />
+            name="imgurData"
+            type="com.amin.sample.model.ImgurImage" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemLay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/baseBackColor">
+        android:id="@+id/itemLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/baseBackColor">
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/coverImageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="fitCenter"
-                app:imageUrl="@{model.imageUrl}"
-                app:layout_collapseMode="parallax"
-                app:layout_constraintBottom_toTopOf="@+id/captionCV"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars"
-                tools:targetApi="lollipop" />
+            android:id="@+id/coverImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            app:imageUrl="@{model.imageUrl}"
+            app:layout_collapseMode="parallax"
+            app:layout_constraintBottom_toTopOf="@+id/captionCV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"
+            tools:targetApi="lollipop" />
 
         <com.google.android.material.card.MaterialCardView
-                android:id="@+id/captionCV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/baseBackDarker"
-                app:cardUseCompatPadding="true"
-                android:layout_margin="5dp"
-                app:layout_constraintBottom_toBottomOf="parent">
+            android:id="@+id/captionCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@color/baseBackDarker"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/caption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:maxLines="2"
-                        android:paddingStart="10dp"
-                        android:paddingTop="15dp"
-                        android:paddingEnd="10sp"
-                        android:paddingBottom="10dp"
-                        android:text="@{model.title}"
-                        android:textColor="@color/imgurImageCaptionBackground"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/upVotes"
-                        tools:text="He's fine, dear, Wolfie's just fine" />
+                    android:id="@+id/caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:maxLines="2"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10sp"
+                    android:paddingBottom="10dp"
+                    android:text="@{model.title}"
+                    android:textColor="@color/imgurImageCaptionBackground"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/imgurDetails"
+                    tools:text="He's fine, dear, Wolfie's just fine" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/imgurDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/upVotesImg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -78,11 +84,11 @@
                         app:srcCompat="@drawable/ic_up_vote"
                         app:tint="@color/imgurImageCaptionBackground" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/upVotes"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:gravity="center"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
@@ -94,9 +100,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/downVotesImg"
                         app:layout_constraintStart_toEndOf="@id/upVotesImg"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="253" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/downVotesImg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -107,7 +114,7 @@
                         app:srcCompat="@drawable/ic_down_vote"
                         app:tint="@color/imgurImageCaptionBackground" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/downVotes"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -123,7 +130,7 @@
                         app:layout_constraintTop_toTopOf="@+id/upVotes"
                         tools:text="253" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/commentsImg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -134,7 +141,7 @@
                         app:srcCompat="@drawable/ic_comment"
                         app:tint="@color/imgurImageCaptionBackground" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/comments"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -150,7 +157,7 @@
                         app:layout_constraintTop_toTopOf="@+id/upVotes"
                         tools:text="253" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/viewsImg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -161,7 +168,7 @@
                         app:srcCompat="@drawable/ic_views"
                         app:tint="@color/imgurImageCaptionBackground" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/views"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -177,6 +184,7 @@
                         app:layout_constraintStart_toEndOf="@id/viewsImg"
                         app:layout_constraintTop_toTopOf="@+id/upVotes"
                         tools:text="253" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

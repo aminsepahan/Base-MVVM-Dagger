@@ -45,10 +45,9 @@ class ShutterStockListFrag : BaseFragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.frag_shutter_stock, container, false
         )
-        val view = binding.root
-        binding.rv.layoutManager = GridLayoutManager(activity, 3)
+        binding.rv.layoutManager = GridLayoutManager(activity, 2)
         binding.rv.hasFixedSize()
-        binding.rv.addItemDecoration(ItemDecoration())
+        binding.rv.addItemDecoration(ItemDecoration(3))
         binding.viewModel = viewModel
         binding.listAdapter = listAdapter
         subscribe = listAdapter.clickEvent.subscribe { model ->
@@ -68,12 +67,14 @@ class ShutterStockListFrag : BaseFragment() {
                 extras
             )
         }
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadImages()
+        if (listAdapter.isEmpty()) {
+            viewModel.loadImages()
+        }
         binding.searchEt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 if (::textChangeCountDownJob.isInitialized)
@@ -94,10 +95,12 @@ class ShutterStockListFrag : BaseFragment() {
     }
 
     private fun search(phrase: String) {
-        page = 1
-        listAdapter.clear()
-        viewModel.searchPhrase = phrase
-        viewModel.loadImages(page)
+        if (viewModel.searchPhrase != phrase) {
+            page = 1
+            listAdapter.clear()
+            viewModel.searchPhrase = phrase
+            viewModel.loadImages(page)
+        }
     }
 
     private val dataObserver = Observer<LDR<BaseResponseShutterStock>> { result ->
