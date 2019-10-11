@@ -1,4 +1,4 @@
-package com.amin.sample.ui.splash
+package com.amin.sample.ui.main
 
 
 import android.os.Bundle

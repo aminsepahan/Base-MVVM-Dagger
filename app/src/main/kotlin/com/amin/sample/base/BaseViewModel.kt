@@ -8,6 +8,11 @@ import com.amin.sample.di.module.NetworkModule
 import com.amin.sample.ui.imgur.ImgurViewModel
 import com.amin.sample.ui.posts.PostsViewModel
 import com.amin.sample.ui.shutterStock.ShutterStockViewModel
+import com.amin.sample.utils.androidThread
+import com.amin.sample.utils.ioThread
+import com.amin.sample.utils.test.EspressoIdlingResource
+import io.reactivex.Maybe
+import io.reactivex.MaybeObserver
 
 abstract class BaseViewModel : ViewModel() {
     init {
@@ -29,5 +34,13 @@ abstract class BaseViewModel : ViewModel() {
                 .networkModule(NetworkModule)
                 .build().inject(this)
         }
+    }
+
+    fun <T, M : MaybeObserver<T>> apiCall(api: Maybe<T>, maybeObserver: M) {
+        api.subscribeOn(ioThread())
+            .doOnSubscribe { EspressoIdlingResource.increment() }
+            .doFinally { EspressoIdlingResource.decrement() }
+            .observeOn(androidThread())
+            .subscribe(maybeObserver)
     }
 }

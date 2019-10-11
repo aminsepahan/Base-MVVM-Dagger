@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/splashFrag"
-            android:name="com.amin.sample.ui.splash.SplashFrag"
+            android:name="com.amin.sample.ui.main.SplashFrag"
             tools:layout="@layout/activity_splash"
             android:label="SplashFrag" >
         <action

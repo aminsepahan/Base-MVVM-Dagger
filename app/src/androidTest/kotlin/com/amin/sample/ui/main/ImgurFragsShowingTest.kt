@@ -1,4 +1,4 @@
-package com.amin.sample.ui.splash
+package com.amin.sample.ui.main
 
 
 import androidx.test.espresso.Espresso.onView
@@ -6,7 +6,6 @@ import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -15,8 +14,6 @@ import com.amin.sample.R
 import com.amin.sample.base.MainActivity
 import com.amin.sample.utils.childAtPosition
 import com.amin.sample.utils.test.EspressoIdlingResource
-import com.amin.sample.utils.withViewAtPosition
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers.allOf
 import org.junit.After
 import org.junit.Before
