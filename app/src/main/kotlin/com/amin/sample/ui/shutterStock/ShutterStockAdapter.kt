@@ -10,6 +10,7 @@ import com.amin.sample.base.BaseViewHolder
 import com.amin.sample.databinding.ItemImageShutterBinding
 import com.amin.sample.model.ShutterStockImage
 import com.amin.sample.model.Transition
+import timber.log.Timber
 
 class ShutterStockAdapter :
     BaseRecyclerAdapter<BaseViewHolder<ShutterStockImage>, ShutterStockImage, Transition>() {
@@ -39,6 +40,7 @@ class ShutterStockAdapter :
 
         init {
             binding.cv.setOnClickListener {
+                Timber.i("position clicked $layoutPosition")
                 clickSubject.onNext(
                     Transition(
                         imageUrl = modelList[layoutPosition].assets.hugeThumb.url,

@@ -103,15 +103,15 @@ class ShutterStockListFrag : BaseFragment() {
         }
     }
 
-    private val dataObserver = Observer<LDR<BaseResponseShutterStock>> { result ->
-        when (result?.status) {
+    private val dataObserver = Observer<LDR<BaseResponseShutterStock>> { response ->
+        when (response?.status) {
             LDR.Status.ERROR -> {
-                showDismissDialog(result.err!!.localizedMessage!!)
+                onError(response.err)
             }
 
             LDR.Status.SUCCESS -> {
                 isLoadMore = false
-                listAdapter.updateList(result.response!!.data)
+                listAdapter.updateList(response.response!!.data)
             }
 
             else -> {

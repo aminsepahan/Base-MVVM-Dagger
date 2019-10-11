@@ -5,7 +5,7 @@ import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
-lateinit var POST_MOCK_PATH: String
+lateinit var MOCK_PATH: String
 
 class ApiUtils {
     companion object {

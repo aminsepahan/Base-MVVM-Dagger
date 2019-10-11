@@ -4,6 +4,7 @@ import com.amin.sample.utils.EnumCompanion
 
 object Configs {
     const val IMAGE_RANDOM_URL = "https://picsum.photos/id/"
+    const val LOG_TAG = "AMMMIN DEBUG"
     var sampleMode = SampleTypes.SHUTTER_STOCK
 
     fun getBaseURL() = when (sampleMode) {

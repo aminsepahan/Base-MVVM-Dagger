@@ -2,7 +2,7 @@ package com.amin.sample.ui.posts
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.amin.sample.utils.LDR
-import com.amin.sample.utils.POST_MOCK_PATH
+import com.amin.sample.utils.MOCK_PATH
 import com.amin.sample.utils.observeOnce
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -31,7 +31,7 @@ class PostsViewModelTest {
 
     @Test
     fun `load post from Api`() {
-        POST_MOCK_PATH = "posts.json"
+        MOCK_PATH = "posts.json"
 
         this.postsViewModel.loadPosts()
 
@@ -41,7 +41,7 @@ class PostsViewModelTest {
 
     @Test
     fun `load post from Api and go to Error state`() {
-        POST_MOCK_PATH = "empty.json"
+        MOCK_PATH = "empty.json"
 
         this.postsViewModel.loadPosts()
 
@@ -51,7 +51,7 @@ class PostsViewModelTest {
 
     @Test
     fun `number of posts should be 100`() {
-        POST_MOCK_PATH = "posts.json"
+        MOCK_PATH = "posts.json"
 
         this.postsViewModel.loadPosts()
 

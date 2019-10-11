@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.amin.sample.base.BaseResponseImgur
 import com.amin.sample.base.BaseViewModel
-import com.amin.sample.base.MyMaybeObserverImgur
 import com.amin.sample.network.ImgurApi
 import com.amin.sample.utils.LDR
 import io.reactivex.disposables.Disposable

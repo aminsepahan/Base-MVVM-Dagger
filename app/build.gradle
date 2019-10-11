@@ -61,7 +61,7 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$activityVersion"
     implementation "androidx.fragment:fragment:$fragmentVersion"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
     // For espresso test cases
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
@@ -110,5 +110,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
+    androidTestImplementation 'androidx.test:rules:1.3.0-alpha02'
+
+    // logging
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 }

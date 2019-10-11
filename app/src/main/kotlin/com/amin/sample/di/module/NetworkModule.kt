@@ -1,6 +1,7 @@
 package com.amin.sample.di.module
 
 import com.amin.sample.base.Configs
+import com.amin.sample.base.Configs.LOG_TAG
 import com.amin.sample.base.Configs.getBaseURL
 import com.amin.sample.base.Configs.sampleMode
 import com.amin.sample.network.ImgurApi
@@ -15,6 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -62,9 +64,11 @@ object NetworkModule {
         val okHttpClientBuilder = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-        okHttpClientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+        val logging = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+            Timber.tag("OkHttp $LOG_TAG").d(message)
         })
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        okHttpClientBuilder.addInterceptor(logging)
         okHttpClientBuilder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
             when (sampleMode) {

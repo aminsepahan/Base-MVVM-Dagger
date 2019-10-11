@@ -1,8 +1,10 @@
-package com.amin.sample.base
+package com.amin.sample.ui.imgur
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.amin.sample.R
+import com.amin.sample.base.App
+import com.amin.sample.base.BaseResponseImgur
 import com.amin.sample.utils.LDR
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable

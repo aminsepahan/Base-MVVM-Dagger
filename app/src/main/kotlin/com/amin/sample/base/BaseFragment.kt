@@ -41,7 +41,8 @@ open class BaseFragment : Fragment() {
     fun onError(error: Throwable?, action: () -> Unit = {}) {
         if (error != null) {
             activity?.showDismissDialog(
-                error.localizedMessage,
+                if (error.localizedMessage.isNullOrEmpty()) getString(R.string.something_went_wrong)
+                else error.localizedMessage,
                 getString(R.string.ok),
                 okListener = {})
         } else {

@@ -1,8 +1,10 @@
-package com.amin.sample.base
+package com.amin.sample.ui.shutterStock
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.amin.sample.R
+import com.amin.sample.base.App
+import com.amin.sample.base.BaseResponseShutterStock
 import com.amin.sample.utils.LDR
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
@@ -24,7 +26,7 @@ class MyMaybeObserverShutter(
 
     override fun onError(e: Throwable) {
         loadingVisibility?.value = View.GONE
-        apiShutterStockData.postValue(LDR.error(App.res.getString(R.string.something_went_wrong)))
+        apiShutterStockData.postValue(LDR.error(""))
     }
 
     override fun onSubscribe(d: Disposable) {

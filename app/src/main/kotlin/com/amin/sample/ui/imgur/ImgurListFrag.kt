@@ -1,7 +1,6 @@
 package com.amin.sample.ui.imgur
 
 
-import android.graphics.drawable.Animatable2
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
