@@ -46,7 +46,7 @@ class ImgurListFrag : Fragment() {
         val factory = ImgurViewModelFactory()
 
         viewModel = ViewModelProviders.of(this, factory).get(ImgurViewModel::class.java)
-        viewModel.apiLiveData.observe(this, this.dataObserver)
+        viewModel.apiLiveData.observe(viewLifecycleOwner, this.dataObserver)
         binding = DataBindingUtil.inflate(
             inflater, R.layout.frag_imgur, container, false
         )
@@ -86,13 +86,11 @@ class ImgurListFrag : Fragment() {
     override fun onPause() {
         super.onPause()
         binding.rv.removeOnScrollListener(onScrollChangeListener)
-        binding.rootLay.children.filterIsInstance<ImageView>().forEach { it.stop() }
     }
 
     override fun onResume() {
         super.onResume()
         binding.rv.addOnScrollListener(onScrollChangeListener)
-        binding.rootLay.children.filterIsInstance<ImageView>().forEach { it.start() }
     }
 
     private val onScrollChangeListener = object : RecyclerView.OnScrollListener() {

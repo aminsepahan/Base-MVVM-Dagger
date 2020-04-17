@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.amin.sample.R
 import com.amin.sample.base.BaseFragment
 import com.amin.sample.model.DetailFragData
 import kotlinx.android.synthetic.main.frag_imgur_container.*
 import kotlinx.android.synthetic.main.frag_imgur_container.view.*
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ImgurContainerFrag : BaseFragment() {
 
@@ -26,43 +27,28 @@ class ImgurContainerFrag : BaseFragment() {
                 ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.HOT)),
                 ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.TOP)),
                 ImgurListFrag.newInstance(ImgurListFragArgs(ImgurFragAdapter.SectionType.USER))
-            )
+            ), lifecycle
         )
-        view.tabs.setupWithViewPager(view.vp)
+        TabLayoutMediator(view.tabs, view.vp) {tab, position ->
+            tab.text = (view.vp.adapter as ImgurFragAdapter).getPageTitle(position)
+        }.attach()
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
-
+        view.vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 (vp.adapter as ImgurFragAdapter?)?.let {
-                    setListClickListener(it)
+                    setListClickListener(it.getItem(position))
                 }
             }
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    private fun setListClickListener(it: ImgurFragAdapter) {
-        subscribe = (it.instantiateItem(
-            vp,
-            vp.currentItem
-        ) as ImgurListFrag?)?.clickEvent?.subscribe { model ->
+    private fun setListClickListener(currentFrag: ImgurListFrag) {
+        subscribe = currentFrag.clickEvent.subscribe { model ->
             val extras = if (model.titleTransition != null) {
                 FragmentNavigatorExtras(
                     model.imageTransition to model.imageTransition.transitionName,
@@ -85,7 +71,6 @@ class ImgurContainerFrag : BaseFragment() {
                 ),
                 extras
             )
-
         }
     }
 }

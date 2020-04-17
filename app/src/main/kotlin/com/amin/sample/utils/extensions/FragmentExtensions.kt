@@ -12,8 +12,10 @@ import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.amin.sample.R
 import com.google.android.material.snackbar.Snackbar
+import kotlin.reflect.full.superclasses
 
 
 fun Fragment.showDismissDialog(
