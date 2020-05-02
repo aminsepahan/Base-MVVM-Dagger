@@ -25,4 +25,18 @@
     <string name="posts_description">Fake Online REST API for Testing and Prototyping Serving 350M requests per month</string>
     <string name="empty_slot">This slot is currently empty and if I was unlucky getting hired, I will keep adding more samples from other Assignments, I hope not though :D</string>
     <string name="box">M0,0h12v12h-12z</string>
+    <string name="decode_file_1">-> Decode File 1</string>
+    <string name="decode_file_2">-> Decode File 2</string>
+    <string name="decode_file_3">-> Decode File 3</string>
+    <string name="current_signal_bit">Current Signal Bit:</string>
+    <string name="current_signal_byte">Current Signal Byte:</string>
+    <string name="current_signal_direction">Current Signal Direction:</string>
+    <string name="current_signal_char">Current Encoded Character:</string>
+    <string name="signalUp">↑</string>
+    <string name="signalDown">↓</string>
+    <string name="progress">Progress:</string>
+    <string name="show_messages">show messages</string>
+    <string name="decode">Decode the file</string>
+    <string name="decode_menu_title">** Wav Encrypted Coding Challenge</string>
+    <string name="decode_desc">Decode an encrypted message from a wav file and show it, it also rocks retro design</string>
 </resources>

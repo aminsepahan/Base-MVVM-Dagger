@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -21,8 +19,6 @@ import com.amin.sample.base.BaseResponseImgur
 import com.amin.sample.databinding.FragImgurBinding
 import com.amin.sample.utils.LDR
 import com.amin.sample.utils.extensions.showDismissDialog
-import com.amin.sample.utils.extensions.start
-import com.amin.sample.utils.extensions.stop
 import com.amin.sample.utils.view.ItemDecoration
 
 
@@ -31,7 +27,7 @@ class ImgurListFrag : Fragment() {
     val args by navArgs<ImgurListFragArgs>()
     var sort = "viral"
     private lateinit var binding: FragImgurBinding
-    private lateinit var viewModel: ImgurViewModel
+    private val viewModel by viewModels<ImgurViewModel>()
     private val listAdapter = ImgurAdapter()
     var clickEvent = listAdapter.clickEvent
     private var page = 1
@@ -43,9 +39,6 @@ class ImgurListFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val factory = ImgurViewModelFactory()
-
-        viewModel = ViewModelProviders.of(this, factory).get(ImgurViewModel::class.java)
         viewModel.apiLiveData.observe(viewLifecycleOwner, this.dataObserver)
         binding = DataBindingUtil.inflate(
             inflater, R.layout.frag_imgur, container, false
@@ -71,6 +64,7 @@ class ImgurListFrag : Fragment() {
         when (result?.status) {
             LDR.Status.ERROR -> {
                 showDismissDialog(result.err!!.localizedMessage!!)
+                result.response?.data
             }
 
             LDR.Status.SUCCESS -> {

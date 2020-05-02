@@ -31,6 +31,12 @@ data class MainMenuItem(
                 App.res.getString(R.string.posts_description),
                 R.drawable.img_jsonplaceholder_logo
             )
+            SampleTypes.WAV_DECODE -> MainMenuItem(
+                3,
+                App.res.getString(R.string.decode_menu_title),
+                App.res.getString(R.string.decode_desc),
+                R.drawable.img_wav_logo
+            )
             else -> MainMenuItem(-1, "", "", 0)
         }
     }

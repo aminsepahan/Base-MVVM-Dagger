@@ -85,6 +85,7 @@ class CircularMenuFrag : BaseFragment() {
             SHUTTER_STOCK -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToShutterStockListFrag())
             IMGUR -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToImgurContainerFrag())
             BLOG_POSTS -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToPostsFragment())
+            WAV_DECODE -> findNavController().navigate(CircularMenuFragDirections.actionCircularMenuFragToMenuFragment())
             else -> { }
         }
     }

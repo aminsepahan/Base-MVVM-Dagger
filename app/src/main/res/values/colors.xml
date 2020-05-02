@@ -8,6 +8,8 @@
     <color name="statusBarColor">#FFFFFF</color>
     <color name="imgurImageCaptionBackground">#474A51</color>
     <color name="imgurImageCaptionTint">#8f9195</color>
+    <color name="gifBack">#000000</color>
+    <color name="decoderTheme">#67fd96</color>
 
     //general
     <color name="themeYellow">#E0B817</color>

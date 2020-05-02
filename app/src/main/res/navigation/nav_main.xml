@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
+    android:id="@+id/nav_decoding"
     app:startDestination="@id/circularMenuFrag">
 
     <fragment
@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_circularMenuFrag_to_imgurContainerFrag"
             app:destination="@id/imgurContainerFrag" />
+        <action
+            android:id="@+id/action_circularMenuFrag_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/shutterStockListFrag"
@@ -68,5 +71,39 @@
         <argument
             android:name="model"
             app:argType="com.amin.sample.model.DetailFragData" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.amin.sample.ui.menu.MenuFragment"
+        tools:layout="@layout/frag_menu"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_decodingMessage"
+            app:destination="@id/decodingMessage"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.amin.sample.ui.message.MessageFragment"
+        tools:layout="@layout/frag_message"
+        android:label="MessageFragment" >
+        <argument
+            android:name="messages"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/decodingMessage"
+        android:name="com.amin.sample.ui.decoding.DecodingMessageFrag"
+        tools:layout="@layout/frag_decoding"
+        android:label="DecodingMessage" >
+        <action
+            android:id="@+id/action_decodingMessage_to_messageFragment"
+            app:destination="@id/messageFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+        <argument
+            android:name="fileId"
+            app:argType="reference" />
     </fragment>
 </navigation>
